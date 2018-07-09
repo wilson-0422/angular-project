@@ -1,0 +1,38 @@
+
+<div class="w_all">
+<div class="l_r7 b_huang1"><p class="r">完善资料后可获得100积分</p></div>
+    <div class="w_b">
+    	<ul class="baoming">
+        	<li class="lint b_bottom"><span class="b_r w_22 l_title">上传头像</span>
+                <div class="radius relative img_w right">
+                    <!--<div class="absolute">-->
+                        <!--<input  ngf-select="upload($file,1)" ng-model="file"  ngf-pattern="'image/*'" accept="image/*" type="file">-->
+                    <!--</div>-->
+                    <img src="images/c_03.jpg" ng-src="{{MyBioaInfo.avatar_path}}" width="56">
+                </div>
+                <div class="clear"></div>
+            </li>
+        	<li class="lint b_bottom"><span class="b_r w_22">店名</span><input class="w_76 t_right f_size" type="text" placeholder="请输入店名" ng-model="MyBioaInfo.shop_name"></li>
+        	<li class="lint b_bottom"><span class="b_r w_22">地址</span><input class="w_76 t_right f_size" type="text" placeholder="请输入地址" ng-model="MyBioaInfo.address" disabled="disabled"></li>
+        	<li class="lint b_bottom"><span class="b_r w_22">详细地址</span><input class="w_76 t_right f_size"  placeholder="请输入店铺详细地址" type="text" ng-model="MyBioaInfo.address_info"></li>
+        	<li class="lint b_bottom"><span class="b_r w_22 l_title">营业执照</span>
+                <div class="radius relative img_w right">
+                    <div class="absolute"><input  ngf-select="upload($file,2)" ng-model="file"  ngf-pattern="'image/*'" accept="image/*" type="file"></div>
+                    <img onerror="this.src='images/err_03.jpg'"   ng-src="{{staticUrl+MyBioaInfo.license_path}}" width="56">
+                </div>
+                <div class="clear"></div>
+            </li>
+        	<li class="lint b_bottom"><span class="b_r w_22">经营年限</span><input class="w_76 t_right f_size"  placeholder="如2年" type="text" ng-model="MyBioaInfo.run_year"></li>
+        </ul>
+    </div>
+    <div class="w_b m_top4">
+    	<ul class="baoming">
+        	<li class="lint b_bottom"><span class="b_r w_22">手机</span><input class="w_76 t_right f_size" placeholder="请输入手机号" ng-model="MyBioaInfo.mobile" disabled="disabled"></li>
+        	<li class="lint b_bottom"><span class="b_r w_22">姓名</span><input class="w_76 t_right f_size"  placeholder="请输入您的姓名" type="text" ng-model="MyBioaInfo.nickname"></li>
+        	<li class="lint l_title b_bottom" ng-click="ui_label()"><span class="b_r w_22">喜好标签</span><span class="w_76 t_right f_size"><span  ng-repeat="label in _hobby" ng-bind="label.label_name+','"></span><img class="p_l m_img" src="images/t_09.jpg" width="8"></span></li>
+        </ul>
+    </div>
+	<div class="w_load p_b3">
+      <button class="bo m_top1 f_size1 w_f red" ng-click="editMyBioDataInfo()">确认上传</button>
+    </div>
+</div>

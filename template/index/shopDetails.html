@@ -1,0 +1,107 @@
+  <div class="w_all" >
+     	<div class="w_b l_r5 m_top2 b_bottom">
+           	<div class="left tui w_75">
+            	<dl>
+                	<dt><img  ng-src="{{shop.avatar_path|imgFilter:shop.type}}" style="width: 50px;border-radius: 100%;height: 50px;"/></dt>
+                    <dd>
+                    	<h2 class="f_size1" ng-bind="shop.merchant_name" ng-if="shop.type==1"></h2>
+                    	<h2 class="f_size1" ng-bind="shop.merchant_nickname" ng-if="shop.type==0"></h2>
+                        <p class="m_top4">
+                            <span class="grey l_r4 radius b_huang" ng-if="shop.type==0"><img class="p_r1 m_img" src="images/dp_06.jpg" width="20">工厂直销</span>
+                            <span class="grey l_r4 radius b_huang" ng-if="shop.type==1"><img class="p_r1 m_img" src="images/w_15.jpg" width="20">批发档口</span>
+                        </p>
+                    </dd>
+                </dl>
+            </div>
+            <div class="right w_25 m_top3" ng-click="isAttention(shop)">
+                <span class="grey l_r2 radius" ng-if="shop.is_attention==0"><img class="p_r1 m_img" src="images/dp_02.png" width="16">未关注</span>
+                <span class="grey l_r2 radius" ng-if="shop.is_attention==1"><img class="p_r1 m_img" src="images/dp_03.jpg" width="16">已关注</span>
+            </div>
+            <div class="clear"></div>
+		</div>
+       <div class="l_r5 w_b xihao p_top1 s_xihao xihaod b_bottom">
+            <ul class="c_grey left w_100" ng-if="lsitIn.length>0">
+                <li style="margin-right: 2%;" ng-if="label.is_select == true" ng-repeat="label in lsitIn"><span ng-bind="label.name">牛仔</span></li>
+                <!--<li><span>全黑</span></li>-->
+                <!--<li><span>明星</span></li>-->
+                <!--<li><span>牛仔</span></li>-->
+                <div class="clear"></div>
+           </ul>
+           <ul class="c_grey left w_100" ng-if="lsitIn.length<1">
+                <li style="margin-right: 2%;" ><span >暂无标签</span></li>
+                <!--<li><span>全黑</span></li>-->
+                <!--<li><span>明星</span></li>-->
+                <!--<li><span>牛仔</span></li>-->
+                <div class="clear"></div>
+           </ul>
+           <!--<div class="right w_10 p_top6"><img src="images/dp_11.jpg" width="24"></div>-->
+           <div class="clear"></div>
+        </div>
+		<div class="w_b l_r5">
+        	<ul ng-if="banned==2">
+            	<li class="left w_05 b_r ell"><span class="ell">所在地：{{shop.city_str}}</span></li>
+            	<li class="left w_05"><span class="p_l ell">发货地：{{shop.transport_from}}</span></li>
+                <div class="clear"></div>
+            </ul>
+            <ul ng-if="banned!=2">
+                <li class="left w_05 b_r ell"><span class="ell">所在地：登录查看</span></li>
+                <li class="left w_05"><span class="p_l ell">发货地：登录查看</span></li>
+                <div class="clear"></div>
+            </ul>
+        </div>
+		<div class="m_top4 f_size">
+        	<ul>
+            	<li class="left w_05">
+                <div class="title p_left b_r1">店铺评价</div>
+               <div class="ping p_left m_top1 b_r">
+                   <p class="m_b"><em>发货</em>
+                       <span ng-repeat="n in [1,2,3,4,5]|limitTo:shop.dispatch_grade"><img src="images/dp_15.jpg" width="16"></span>
+                       <span ng-repeat="n in [1,2,3,4,5]|limitTo:(5-shop.dispatch_grade)"><img src="images/dp_18.jpg" width="16"></span>
+                   </p>
+                   <p class="m_b"><em>物流</em>
+                       <span ng-repeat="n in [1,2,3,4,5]|limitTo:shop.transport_grade"><img src="images/dp_15.jpg" width="16"></span>
+                       <span ng-repeat="n in [1,2,3,4,5]|limitTo:5-shop.transport_grade"><img src="images/dp_18.jpg" width="16"></span>
+                   </p>
+                   <p class="m_b"><em>品质</em>
+                       <span ng-repeat="n in [1,2,3,4,5]|limitTo:shop.quality_grade"><img src="images/dp_15.jpg" width="16"></span>
+                       <span ng-repeat="n in [1,2,3,4,5]|limitTo:5-shop.quality_grade"><img src="images/dp_18.jpg" width="16"></span>
+                   </p>
+                </div>
+                </li>
+            	<li class="left w_05 b_r">
+                  <div class="title p_left w_b">店铺平均分</div>
+                  <div class="fen" ng-if="shop.total_grade <= 5">
+                      <span class="t_center">5</span><em class="f_size2">分</em>
+                  </div>
+                    <div class="fen" ng-if="shop.total_grade > 5">
+                        <span class="t_center" ng-bind="shop.total_grade"></span><em class="f_size2">分</em>
+                    </div>
+                </li>
+                <div class="clear"></div>
+            </ul>
+        </div>
+    </div>
+    <div class="w_b l_r">
+    <h1 class="f_size1 b_cc">全部商品</h1>
+    </div>
+    <div class="wrap shang">
+    	<ul infinite-scroll='load.nextPage()' infinite-scroll-disabled='load.busy' infinite-scroll-distance='1'>
+            <li class="relative" ng-repeat="goods in goodsList" ui-sref="CommodityDetails.details_one({pid:goods.pid})">
+                <div class="absolute l_top">
+                    <span class="b_cheng w_f radius l_r4" ng-if="goods.is_group==2">拼单</span>
+                    <span class="b_f1 w_f radius l_r4" ng-if="goods.activity_type==5">抢购</span>
+                </div>
+                <div class="gd_imgs">
+                    <img onerror="this.src='images/yipi_goods.png'" ng-src="{{thumb180Url+goods.path1}}">
+                </div>
+                <div class="shang_miao"><p class="f_size gf_omit" ng-bind="goods.product_name"></p>
+                    <p class="m_top4 in"><span class="right c_grey" ng-bind="goods.origin" ng-if="banned==2"></span>
+                        <span class="cheng f_size1" ng-if="banned==2">￥ <span ng-bind="goods.sold_price1"></span></span>
+                        <span class="cheng f_size1" ng-if="banned!=2">登录查看</span>
+                    </p>
+                </div>
+            </li>
+            <div ng-show='!load.busy' class="down_updata" ng-if="goodsList.length>0">加载中...</div>
+            <div class="clear"></div>
+        </ul>
+    </div>

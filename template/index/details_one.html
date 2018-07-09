@@ -1,0 +1,117 @@
+<div class="swiper-container swiper-container1 wrap w_all relative w_b">
+
+    <ks-swiper-container pagination-is-active="true" autoplayDisableOnInteraction="false" initial-slide="0" autoplay="3000" loop="true" show-nav-buttons="false" slides-per-view="1" space-between="0" pagination-clickable="true" override-parameters="{'autoplayDisableOnInteraction':false}">
+        <ks-swiper-slide class="swiper-slide" ng-repeat="banner in DetailsList.imgs">
+            <!--<a ng-href="{{'https://'+banner.href}}" ui-sref="adCarousel({ads_id:banner.ads_id})">-->
+            <img style="width: 100%" ng-src="{{staticUrl+banner.path}}" ng-click="preview_img(DetailsList.imgs,banner.path)">
+            <!--</a>-->
+        </ks-swiper-slide>
+    </ks-swiper-container>
+</div>
+<div class="l_r w_b b_bottom">
+    <div class="left w_80 f_size" ng-bind="DetailsList.product_name">
+    </div>
+    <div class="right w_18 t_center l_border" ng-click="isAttention(DetailsList)">
+        <p class="f_size0 m_top2 cang" ng-if="DetailsList.is_attention==0"><img class="l_r5" src="images/gh_09.jpg" width="24"><br><span class="c_grey">未收藏</span></p>
+        <p class="f_size0 m_top2 cang" ng-if="DetailsList.is_attention==1"><img class="l_r5" src="images/gh_13.jpg" width="24"><br><span class="c_grey">已收藏</span></p>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="l_r w_b b_bottom"  ng-if="type==''">
+    <ul>
+        <li class="w_22 left price" ng-repeat="numPrice in DetailsList.ranges">
+            <p ng-bind="numPrice.str">1件起批</p>
+            <p class="f_size1 cheng" ng-bind="numPrice.price" ng-if="banned==2"></p>
+            <p class="f_size1 cheng" ng-if="banned!=2">登录查看</p>
+        </li>
+        <div class="clear"></div>
+    </ul>
+</div>
+<div class="l_r w_b b_bottom"  ng-if="type==5">
+    <ul>
+        <li class="w_22 left price">
+            <p>抢购价格</p>
+            <p class="f_size1 cheng" ng-bind="DetailsList.grap.activity_price"></p>
+        </li>
+        <li class="w_22 left price">
+            <p>限购数量</p>
+            <p class="f_size1 cheng" ng-bind="DetailsList.grap.activity_limit_number"></p>
+        </li>
+        <div class="clear"></div>
+    </ul>
+</div>
+<div class="l_r w_b b_bottom" ng-if="type==8">
+    <ul>
+        <p class="m_top4 in f_size20">直播价:<span class="c_o003 f_size">￥ <span class="f_size20" ng-bind="DetailsList.live_price">352.00</span></span><span class="c_grey f_size0 right">市场价:<del>{{DetailsList.market_price}}</del></span></p>
+        <div class="clear"></div>
+    </ul>
+</div>
+<!--<div class="l_r w_b b_bottom"  ng-if="type==1||type==2">-->
+    <!--<ul>-->
+        <!--<li class="w_22 left price">-->
+            <!--<p ng-if="type==1">团购价格</p>-->
+            <!--<p ng-if="type==2">拼单价格</p>-->
+            <!--<p class="f_size1 cheng" ng-bind="DetailsList.group.price"></p>-->
+        <!--</li>-->
+        <!--<li class="w_22 left price">-->
+            <!--<p>已参与数</p>-->
+            <!--<p class="f_size1 cheng" ng-bind="DetailsList.group.group_now_num"></p>-->
+        <!--</li>-->
+        <!--<li class="w_05 left price">-->
+            <!--<p>结束时间</p>-->
+            <!--<p class="f_size1 cheng" ng-bind="DetailsList.end_time*1000|date:'yyyy-MM-dd HH-mm'"></p>-->
+        <!--</li>-->
+        <!--<div class="clear"></div>-->
+    <!--</ul>-->
+<!--</div>-->
+<div class="l_r w_b b_bottom"  ng-if="type==1||type==2">
+    <ul>
+        <li class="w_all left price p_top6">
+            <p>活动进度</p>
+            <div class="bo relative wrap jing m_top4" >
+                <div class="w_auto bo o_b b_huang" style="width:{{DetailsList.percent*100}}%"></div>
+            </div>
+            <p class="f_size1"><span class="left p_l" ng-bind="'价格:'+DetailsList.group.price"></span><span class="right cheng p_r">{{DetailsList.group.min_num+'件成单，已成'}}{{DetailsList.group.group_now_num}}件</span></p>
+        </li>
+        <li class="w_all left price">
+            <p>结束时间</p>
+            <p class="f_size1 cheng" ng-bind="DetailsList.end_time*1000|date:'yyyy-MM-dd HH:mm:ss'"></p>
+        </li>
+        <div class="clear"></div>
+    </ul>
+</div>
+<div class="l_r w_b"  ng-if="banned==2">
+    <p class="c_grey"ng-bind="'发货地: '+DetailsList.origin">发货  江苏连云港</p>
+</div>
+<div class="l_r w_b m_top4">
+    <p class="f_size"><span class="p_r">优惠说明</span>{{DetailsList.privilege_desc}}</p>
+</div>
+<div class="w_b l_r5 m_top2">
+    <div class="left tui">
+        <dl>
+            <dt><img  ng-src="{{DetailsList.merchant.avatar_path|imgFilter:DetailsList.merchant.type}}" style="width: 50px;height: 50px;border-radius: 100%;"/></dt>
+            <dd>
+                <h2 class="f_size">{{DetailsList.merchant.merchant_name}}</h2>
+                <p class="m_top4">
+                    <span class="p_r1 q_sjtb" ng-if="DetailsList.merchant.type == 0"><img src="images/w_06.jpg"></span>
+                    <span class="p_r1 q_sjtb" ng-if="DetailsList.merchant.type == 1"><img src="images/w_15.jpg"></span>
+                    <span class="p_l" ng-if="DetailsList.merchant.start_batch!=0">{{DetailsList.merchant.start_batch}}件起批</span>
+                    <span class="p_l" ng-if="DetailsList.merchant.start_batch==0">不混批</span>
+                    <span class="p_l" ng-repeat="hobby in hobbys.services" ng-bind="hobby.name" ng-if="hobby.is_select==true">韩国单</span>
+                </p>
+            </dd>
+        </dl>
+    </div>
+    <!--<div class="right w_18 t_right"><span><img class="m_img p_top" src="images/t_09.jpg" width="10"></span></div>-->
+    <div class="clear"></div>
+</div>
+<div class="w_b p_b3 p_top2 w_bott">
+    <div class="l_r5">
+        <ul class="w_dian f_size">
+            <li class="grey t_center left" ui-sref="shopDetails({merchant_id:DetailsList.merchant_id})">进入店铺</li>
+            <li class="grey t_center right"  ui-sref="shopDetails({merchant_id:DetailsList.merchant_id})">全部商品</li>
+            <div class="clear"></div>
+        </ul>
+    </div>
+    <div class="w_load_more" ui-sref="CommodityDetails.details_two()">点击查看更多</div>
+</div>

@@ -1,0 +1,35 @@
+
+<div class="w_all">
+    <div class="w_b">
+    	<ul class="baoming">
+        	<li class="lint b_bottom title_1"><span class="w_22">联系人</span><input class="w_76 lin_t f_size"  placeholder="请您的姓名" type="text" ng-model="addressList.uname"></li>
+        	<li class="lint b_bottom title_1"><span class="w_22">手机号</span><input class="w_76 lin_t f_size"  placeholder="请您的联系方式" type="text" ng-model="addressList.mobile"></li>
+        	<li class="lint b_bottom title_1"><span class="w_22">省份</span>
+				<!--<input class="w_76 lin_t f_size"  placeholder="如北京市、朝阳区、五里桥" type="text">-->
+				<div class="w_b w_border">
+					<em style="margin-right: 0">
+						<select ng-model="addressList.province" ng-options="index1 as province for (index1,province) in provinces" ng-change="changeProvince(addressList.province)">
+							<option value="">所在省</option>
+						</select>
+					</em>
+					<em style="margin: 0 2%">
+						<select ng-model="addressList.city" ng-options="index2 as city for (index2,city) in getCity" ng-change="changeCity(addressList.city)">
+							<option value="">所在市</option>
+						</select>
+					</em>
+					<em style="margin-right: 0">
+						<select ng-model="addressList.town" ng-options="index3 as town for (index3,town) in getTown">
+							<option value="">所在区</option>
+						</select>
+					</em>
+				</div>
+			</li>
+        	<li class="lint b_bottom title_1"><span class="w_22">收货地址</span><input class="w_76 lin_t f_size" placeholder="请您的详细地址" type="text" ng-model="addressList.street"></li>
+        </ul>
+    </div>
+    <div class="bottom p_b4">
+    	<div class="w_load">
+        	<button class="but_border" ng-click="upUserInfo()">保存</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,76 @@
+<div infinite-scroll='load.nextPage()' infinite-scroll-disabled='load.busy' infinite-scroll-distance='0'>
+    <div class="w_b"  ng-repeat="detauls in detaulsList" ui-sref="DesignersDetails({rid:detauls.rid})">
+        <div class="w_all relative" style="max-height: 200px;overflow: hidden;">
+            <div class="absolute a_bottom j_black" ng-bind="detauls.product_name">老上海记忆·碎花旗袍</div>
+            <img src="images/21b9.png" ng-src="{{staticUrl+detauls.img_path}}">
+        </div>
+        <div class="wrap jingdu p_top6">
+        <ul>
+            <li class="left shadow t_center price" ng-repeat="orders in detauls.price">
+                <p ng-if="orders.num2 != 1000000">{{orders.num1}}件~{{orders.num2}}件</p>
+                <p ng-if="orders.num2 == 1000000">{{orders.num1+'件以上'}}</p>
+
+                <p ng-bind="orders.price">￥799.00</p>
+            </li>
+            <div class="clear"></div>
+        </ul>
+            <div class="bo relative w_100 jing m_top4" style="overflow: hidden;" ng-if="detauls.activity_now_number==0">
+                <div class="w_auto bo o_b" style="width:0"></div>
+            </div>
+            <div class="bo relative w_100 jing m_top4" style="overflow: hidden;" ng-if="detauls.activity_now_number<detauls.price[0].num2 && detauls.activity_now_number>0">
+                <div class="w_auto bo o_b" style="width: 12.5%"></div>
+            </div>
+            <div class="bo relative w_100 jing m_top4" style="overflow: hidden;" ng-if="detauls.activity_now_number>=detauls.price[1].num1 && detauls.activity_now_number<detauls.price[1].num2">
+                <div class="w_auto bo o_b" style="width: 37.5%"></div>
+            </div>
+            <div class="bo relative w_100 jing m_top4" style="overflow: hidden;" ng-if="detauls.activity_now_number>=detauls.price[2].num1&&detauls.activity_now_number<detauls.price[2].num2">
+                <div class="w_auto bo o_b" style="width: 62.5%"></div>
+            </div>
+            <div class="bo relative w_100 jing m_top4" style="overflow: hidden;" ng-if="detauls.activity_now_number>=detauls.price[3].num1">
+                <div class="w_auto bo o_b" style="width: 87.5%"></div>
+            </div>
+        <div class="m_top4 p_b3">
+            <p>当前预定数量：<span class="cheng">{{detauls.activity_now_number}}</span>件</p>
+            <p>{{'交货周期：'+detauls.lead_time}}</p>
+            <p>截止：{{detauls.end_time*1000|date:'yyyy-MM-dd HH:mm:ss'}}</p>
+        </div>
+        </div>
+    </div>
+    <div ng-show='load.busy' class="down_updata">暂无其他众筹</div>
+    <div ng-show='!load.busy' class="down_updata">加载中</div>
+</div>
+    <!--<div class="w_b">-->
+    <!--<div class="w_all relative p_top3">-->
+    	<!--<div class="absolute a_bottom j_black">老上海记忆·碎花旗袍</div>-->
+    	<!--<a href="众筹详情.html"><img src="images/21b9.png"></a>-->
+    <!--</div>-->
+    <!--<div class="wrap jingdu p_top6">-->
+    <!--<ul>-->
+    	<!--<li class="left shadow t_center">-->
+        	<!--<p>5~10件</p>-->
+            <!--<p>￥799.00</p>-->
+        <!--</li>-->
+    	<!--<li class="left shadow t_center">-->
+        	<!--<p>10~30件</p>-->
+            <!--<p>￥749.00</p>-->
+        <!--</li>-->
+    	<!--<li class="left shadow t_center">-->
+        	<!--<p>50~100件</p>-->
+            <!--<p>￥649.00</p>-->
+        <!--</li>-->
+    	<!--<li class="left shadow t_center">-->
+        	<!--<p>100件以上</p>-->
+            <!--<p>￥499.00</p>-->
+        <!--</li>-->
+        <!--<div class="clear"></div>-->
+    <!--</ul>-->
+    <!--<div class="bo relative w_100 jing m_top4">-->
+    	<!--<div class="w_auto bo o_b"></div>-->
+    <!--</div>-->
+    <!--<div class="m_top4 p_b3">-->
+    	<!--<p>当前预定数量：<span class="cheng">26</span>件</p>-->
+        <!--<p>交货周期：众筹成功后，预计2~3周发货</p>-->
+        <!--<p>截止：2016-08-21 00:00:00</p>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->

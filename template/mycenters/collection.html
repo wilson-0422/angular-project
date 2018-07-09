@@ -1,0 +1,101 @@
+<div class="b_huang l_r2 boss">
+    <div class="l_r10">
+    <div class="sea f_size1 t_center gong radius">
+    	<ul>
+        	<li class="w_05 left" ng-class="{'gong_hover':collectionType==1}" ng-click="myCollection(1)">店铺</li>
+        	<li class="w_05 left" ng-class="{'gong_hover':collectionType==0}" ng-click="myCollection(0)">商品</li>
+        </ul>
+    </div>
+    </div>
+    <div class="clear"></div>
+   </div>
+   <div class="gong_content" ng-if="collectionType==1">
+    <div class="w_all" ng-repeat="collection in collectionList">
+     	<div class="w_b l_r5 m_top2 b_bottom" ui-sref="shopDetails({merchant_id:collection.product.uid})">
+           	<div class="tui">
+            	<dl>
+                	<dt><img  ng-src="{{collection.avatar_path|imgFilter:collection.type}}" style="width: 50px"/></dt>
+                    <dd>
+                    	<h2 class="f_size">{{collection.product.merchant_name}}</h2>
+                        <p class="m_top4">
+                            <img class="p_r1" src="images/w_15.jpg" width="22">
+                            <span class="p_l" ng-if="collection.product.start_batch == 0">1件起批</span>
+                            <span class="p_l" ng-if="collection.product.start_batch != 0">{{collection.product.start_batch+'件起批'}}</span>
+                            <!--<span class="p_l">{{collection.product.hobby}}</span>-->
+                            <span class="p_l biaoti"><span ng-repeat="orders in collection.hobby.services" ng-bind="orders.name+'、'">韩国单</span></span>
+                        </p>
+                    </dd>
+                </dl>
+            </div>
+            <div class="clear"></div>
+		</div>
+        <div class="wrap ming">
+        	<ul>
+            	<li ng-repeat="img in collection.product.products"><img onerror="this.src='images/yipi_goods.png'" ng-src="{{thumb180Url+img.path1}}"  ui-sref="CommodityDetails.details_one({pid:img.pid})"></li>
+            	<!--<li><img src="images/wa_32.jpg"></li>-->
+            	<!--<li><img src="images/wa_32.jpg"></li>-->
+                <div class="clear"></div>
+            </ul>    
+        </div>
+    </div>
+    <!--<div class="w_all">
+     	<div class="w_b l_r5 m_top2 b_bottom">
+           	<div class="left tui">
+            	<dl>
+                	<dt><a href="店铺详情.html"><img src="images/w_03.jpg" width="46"></a></dt>
+                    <dd>
+                    	<a href="店铺详情.html"><h2 class="f_size">猪猪服饰</h2>
+                        <p class="m_top4"><img class="p_r1" src="images/w_15.jpg" width="22"><span class="cheng">批发档口</span><span class="p_l">10件起批</span><span class="p_l">韩国单</span></p></a>
+                    </dd>
+                </dl>
+            </div>
+            <div class="right g_c l_border hei">已关注</div>
+            <div class="clear"></div>
+		</div>
+        <div class="wrap ming">
+        	<ul>
+            	<li><img src="images/wa_32.jpg"></li>
+            	<li><img src="images/wa_32.jpg"></li>
+            	<li><img src="images/wa_32.jpg"></li>
+                <div class="clear"></div>
+            </ul>    
+        </div>
+    </div>-->
+   </div> 
+   <div class="wrap shang gong_content" ng-if="collectionType==0">
+    	<ul>
+            <li class="relative" ng-repeat="goods in collectionList" ui-sref="CommodityDetails.details_one({pid:goods.product.pid})" ng-if="goods.product!=''">
+                <div class="absolute l_top">
+                    <span class="b_f1 w_f radius l_r4" ng-if="goods.product.pre_sale==1">预售</span>
+                    <span class="b_cheng w_f radius l_r4" ng-if="goods.product.allow_pin==1&&goods.product.activity_type==0">拼单</span>
+                    <span class="b_f1 w_f radius l_r4" ng-if="goods.product.is_promote==1">爆款</span>
+                </div>
+                <img ng-src="{{thumb180Url+goods.product.path1}}">
+                <div class="shang_miao"><p class="f_size gf_omit" ng-bind="goods.product.product_name"></p>
+                    <p class="m_top4 in"><span class="right c_grey" ng-bind="goods.product.origin"></span><span class="cheng f_size1">￥ <span ng-bind="goods.product.sold_price1"></span></span></p>
+                </div>
+            </li>
+        	<!--<li class="relative">-->
+            	<!--<div class="absolute l_top">-->
+                	<!--<span class="b_cheng w_f radius l_r4">拼单</span>-->
+                <!--</div>-->
+            	<!--<a href="商品详情.html"><img src="images/ew_13.jpg"></a>-->
+                <!--<div class="shang_miao"><p class="f_size">韩国夏新款女装修身显瘦连衣裙优</p>-->
+                <!--<p class="m_top4 in"><span class="right c_grey">重庆</span><span class="cheng f_size1">￥352.00</span></p>-->
+                <!--</div>-->
+            <!--</li>-->
+        	<!--<li>-->
+            	<!--<a href="商品详情.html"><img src="images/ew_13.jpg"></a>-->
+                <!--<div class="shang_miao"><p class="f_size">韩国夏新款女装修身显瘦连衣裙优</p>-->
+                <!--<p class="m_top4 in"><span class="right c_grey">重庆</span><span class="cheng f_size1">￥352.00</span></p>-->
+                <!--</div>-->
+            <!--</li>-->
+        	<!--<li>-->
+            	<!--<a href="商品详情.html"><img src="images/ew_13.jpg"></a>-->
+                <!--<div class="shang_miao"><p class="f_size">韩国夏新款女装修身显瘦连衣裙优</p>-->
+                <!--<p class="m_top4 in"><span class="right c_grey">重庆</span><span class="cheng f_size1">￥352.00</span></p>-->
+                <!--</div>-->
+            <!--</li>-->
+            <div class="clear"></div>
+        </ul>
+    </div>

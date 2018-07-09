@@ -1,0 +1,61 @@
+<div class="l_r7 w_b t_bottom" ng-if="orderInfo.status != 1">
+    <div class="w_10 left">
+        <div class="left">
+            <img class="m_img" src="images/es_05.jpg" width="16">
+        </div>
+    </div>
+    <div class="right w_95">
+        <p class="f_size b_cc">留言备注：{{orderInfo.note}}</p>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="waa m_top4">
+    <div class="w_all w_b">
+        <div class="l_r7">
+            <div class="w_67 left" ui-sref="shopDetails({merchant_id:orderInfo.merchant_id})">
+                <img style="border-radius: 100%;height: 26px;" ng-src="{{orderInfo.merch_avatar|imgFilter:returnInfo.order_type}}" class="l_r5" src="images/jin_03.jpg" width="26">
+                <span ng-bind="orderInfo.merch_name"></span>
+            </div>
+            <div class="right w_33 t_right">
+                <!--<span>优惠说明</span>-->
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+<div ng-repeat="goods in orderInfo.refund_info" >
+    <div class="t_bottom" ui-sref="CommodityDetails.details_one({pid:goods.product_id})">
+        <div class="w_b l_r7">
+            <div class="left w_25" style="height:80px;">
+                <img style="max-height: 80px;" ng-src="{{staticUrl+goods.product_avatar}}" src="images/jin_11.jpg" width="80">
+            </div>
+            <div class="right w_75">
+                <h1 class="f_size" ng-bind="goods.product_name">欧洲站2014早秋新款气质女装雨伞刺绣蕾丝拼接太空棉蓬蓬连衣裙潮</h1>
+                <p class="m_top4 f_size" ng-if="goods.size_json.length>1"><span class="b_huang l_r6 radius2">混批订单</span></p>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="t_bottom l_r7" ng-repeat="goodsSize in goods.size_json">
+        <p class="left w_32"><span>{{goodsSize.color}}：</span><span>{{goodsSize.size}}</span><span ng-if="goodsSize.size!='均码'">码</span></p>
+        <p class="left w_05"><span class="p_r">×{{goodsSize.num}}</span>￥{{goodsSize.price}}</p>
+        <div class="clear"></div>
+    </div>
+    <!--<div class="t_bottom l_r7">
+        <p class="left w_32">灰色：M码</p>
+        <p class="left w_05"><span class="p_r">×1</span>￥339.00</p>
+        <div class="clear"></div>
+    </div>
+    <div class="t_bottom l_r7">
+        <p class="left w_32">藏青色：XL码</p>
+        <p class="left w_05"><span class="p_r">×1</span>￥339.00</p>
+        <div class="clear"></div>
+    </div>-->
+</div>
+<div class="bottom t_bottom" ng-if="orderInfo.status==4">
+    <div class="w_b l_r7">
+        <div class="left"><button class="l_r6 grey f_size radius border">联系客服</button></div>
+        <div class="right"><button class="l_r6 grey f_size radius border shengt">确定返回</button></div>
+        <div class="clear"></div>
+    </div>
+</div>

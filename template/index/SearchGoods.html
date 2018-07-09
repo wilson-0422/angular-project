@@ -1,0 +1,70 @@
+	<div class="b_huang l_r2 boss">
+    <div class="sea w_load">
+    	<img class="m_img p_l" src="images/wa_07.jpg" width="24"><span class="p_l"><input placeholder="输入关键字搜索" type="text" ng-model="searchBox.keyword"></span>
+        <em ng-click="search()">搜索</em>
+    </div>
+   </div>
+    <div class="w_b l_r5 m_top2 b_bottom">
+        <div class="left tui f_size tui1"  style="position: relative;">
+            <span ng-class="{'cheng':searchBox.orderBy==null || searchBox.orderBy==1}" ng-click="clickType(1)">综合排序</span>
+            <span ng-class="{'cheng':searchBox.orderBy==2}" ng-click="clickType(2)">销量优先</span>
+
+            <span style="width: 36%" ng-click="price=!price" ng-class="{'cheng':searchBox.orderBy==3||searchBox.orderBy==4}">{{orderArr}}<img style="padding-left: 6px;" class="m_img p_l" src="images/ew_06.jpg"></span>
+            <div class="m_price" ng-show="price">
+                <span ng-class="{'cheng':searchBox.orderBy==3}" ng-click="clickType(3)">从低到高</span>
+                <span ng-class="{'cheng':searchBox.orderBy==4}" ng-click="clickType(4)">从高到低</span>
+            </div>
+        </div>
+        <div class="right g_c l_border hei hei1 shai_set" ng-click="setGood()">筛选<img class="m_img p_l1" src="images/ew_03.jpg" width="24"></div>
+        <div class="clear"></div>
+    </div>
+    <div class="box box2" style="opacity: 1;" ng-show="sears"  ng-click="sears=!sears"></div>
+    <div class="wrap shang">
+    	<ul infinite-scroll='load.nextPage()' infinite-scroll-disabled='load.busy' infinite-scroll-distance='0'>
+        	<li class="relative" ng-repeat="goods in goodsList" ui-sref="CommodityDetails.details_one({pid:goods.pid})">
+            	<div class="absolute l_top">
+                	<!--<span class="b_f1 w_f radius l_r4" ng-if="goods.pre_sale==1">预售</span>-->
+                    <span class="b_cheng w_f radius l_r4" ng-if="goods.is_group==2">拼单</span>
+                    <span class="b_f1 w_f radius l_r4" ng-if="goods.activity_type==5">抢购</span>
+                </div>
+                <div class="gd_imgs">
+                    <img onerror="this.src='images/yipi_goods.png'" ng-src="{{thumb180Url+goods.path1}}">
+                </div>
+                <div class="shang_miao">
+                    <p class="f_size gf_omit" ng-bind="goods.product_name"></p>
+                    <p class="m_top4 in"><span class="right c_grey" ng-bind="goods.origin" ng-if="banned==2"></span>
+                        <span class="cheng f_size1" ng-if="banned==2">￥ <span ng-bind="goods.sold_price1"></span></span>
+                        <span class="cheng f_size1" ng-if="banned!=2">登录查看</span>
+                    </p>
+                </div>
+            </li>
+            <div class="clear"></div>
+            <div ng-show='load.busy' class="down_updata">加载完毕</div>
+            <div ng-show='!load.busy' class="down_updata">暂无其他商品</div>
+        </ul>
+    </div>	
+    <div class="click b_click" ng-click="pageScroll()"><img width="60" src="images/wa_36.png"></div>
+    <div class="shai grey toggle" ng-style="{'left':cont+'%'}">
+        <div class="b_bottom w_b">
+            <div class="w_tt f_size">
+                <button class="right b_huang seta" ng-model="word" ng-click="clickFilter()">完成</button><button class="left seta" ng-click="setGood()">取消</button>筛选
+            </div>
+        </div>
+        <h1 class="w_b m_top2">价位</h1>
+        <div class="z_in m_top1">
+            <input type="text" placeholder="最低价" ng-model="searchBox.low_price"><span><img class="m_img p_l" src="images/er_03.jpg" width="20"></span><input type="text" placeholder="最高价" ng-model="searchBox.high_price">
+        </div>
+        <h1 class="w_b m_top4">起批量</h1>
+        <div class="z_in m_top1 z_in1">
+            <input type="text" placeholder="请输入，最低1件起批" ng-model="searchBox.sole_sum1">
+        </div>
+        <h1 class="w_b m_top4">来源</h1>
+        <div class="w_load w_90">
+            <button class="m_top1" ng-click="goodSource()">全部来源</button>
+            <ul class="m_top1">
+                <li ng-class="{'soe_source':searchBox.from=='0'}" ng-click="goodSource(0)">工厂</li>
+                <li ng-class="{'soe_source':searchBox.from==1}" ng-click="goodSource(1)">批发档口</li>
+            </ul>
+        </div>
+    </div>
+<div class="box box2" style="opacity: 1;" ng-show="sears"></div>

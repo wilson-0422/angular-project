@@ -1,0 +1,35 @@
+	<div class="w_b p_b3">
+	<div class="wrap xihao p_top1">
+    	<ul class="cheng">
+        	<li  ng-repeat="newlabel in choiceLabel">
+                <span ng-class="{'b_huang':newlabel.is_select}" ng-bind="newlabel.label_name"></span>
+            </li>
+            <!--<li><span>全黑</span></li>-->
+            <!--<li ng-show="arry!=''"><span>明星同款</span></li>-->
+            <div class="clear"></div>
+        </ul> 
+        <p class="m_top0 cheng">从下面点击您感兴趣的标签即可直接添加</p>
+    </div>
+    </div>
+	<div class="wrap xihao p_top1 xihao1">
+    	<ul class="cheng">
+        	<li ng-repeat="label in labels" ng-click="addLabel(label)"><span ng-class="{'lb_huang':label.is_select}" ng-bind="label.label_name"></span></li>
+            <!--<li><span>全黑</span></li>-->
+            <!--<li><span>明星同款</span></li>-->
+        	<!--<li><span>牛仔</span></li>-->
+            <!--<li><span>全黑</span></li>-->
+            <!--<li><span>明星同款</span></li>-->
+        	<!--<li><span>牛仔</span></li>-->
+            <!--<li><span>全黑</span></li>-->
+            <!--<li><span>明星同款</span></li>-->
+        	<!--<li><span>牛仔</span></li>-->
+            <!--<li><span>全黑</span></li>-->
+            <!--<li><span>明星同款</span></li>-->
+            <div class="clear"></div>
+        </ul> 
+    </div>
+<div class="f_size1 bottom b_top">
+	<div class="w_load p_b3 w_load1">
+      <button class="bo m_top1 f_size1 w_f radius2" ng-click="configLabel()">确定</button>
+    </div>
+</div>

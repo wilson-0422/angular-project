@@ -1,0 +1,98 @@
+	<div class="w_all b_huang1">
+    	<p class="huang l_r7">注意：每次成功发布都将扣除100积分</p>
+    </div>
+	<div class="title w_all f_size1 fabu">
+    	<ul>
+        	<li class="left w_05 t_center c_grey grey" ng-class="{'hover':release.type==1}" ng-click="changeType(1)">我要供货</li>
+        	<li class="left w_05 t_center c_grey grey" ng-class="{'hover':release.type==2}" ng-click="changeType(2)">我有需求</li>
+            <div class="clear"></div>
+        </ul>
+    </div>
+    <div class="w_all xq m_b1" ng-if="release.type==1">
+	<div class="l_r w_b b_bottom">
+    	<div class="w_load wrap">
+    	<ul class="yue">
+            <h1 class="f_size">发布标题</h1>
+        	<li class="m_top4 all m_b"><input  type="text" ng-model="release.title"></li>
+            <h1 class="f_size">供应量</h1>
+        	<li class="m_top4 all m_b"><input  type="text" ng-model="release.num"></li>
+            <h1 class="f_size">供应商品说明</h1>
+        	<li class="m_top4 all m_b hei2 p_top6"><textarea ng-model="release.describe"></textarea></li>
+            <h1 class="f_size">上传照片<span class="f_size0 c_grey p_l">最多上传5张</span></h1>
+            <div class="m_top4">
+            <div class="relative img_w left">
+                <div class="absolute"><input class="input_photo"  multiple="multiple"  ngf-select="uploads($files)" ng-model="file"  ngf-pattern="'image/*'" accept="image/*" type="file"/></div>
+                <img src="images/err_03.jpg" width="70">
+            </div>
+            <div class="left p_l m_top2 relative" ng-repeat="img in release.imgs">
+                <img src="images/err_05.jpg" width="70" style="height:80px;width:80px" ng-src="{{staticUrl+img}}">
+                <div class="xiance_gb_an" ng-if="release.imgs.length>0">
+                    <img src="images/xiance_gb_an.png"  ng-click="removeImg($index)"width="17" height="17">
+                </div>
+            </div>
+            <div class="clear"></div>
+            </div>
+        </ul>
+        </div>
+    </div>
+    <div class="l_r w_b">
+     	<div class="w_load wrap">
+        	<ul class="yue">
+            <h1 class="f_size m_top4">供货人姓名</h1>
+        	<li class="m_top4 all m_b"><input type="text" ng-model="release.name"></li>
+            <h1 class="f_size">供货人联系方式</h1>
+        	<li class="m_top4 all m_b"><input type="text" ng-model="release.mobile"></li>
+            </ul>
+        </div>    
+    </div>
+    </div>
+    <div class="w_all xq m_b1" style="margin-bottom: 40px;" ng-if="release.type==2">
+	<div class="l_r w_b b_bottom">
+    	<div class="w_load wrap">
+    	<ul class="yue">
+            <h1 class="f_size">发布标题</h1>
+            <li class="m_top4 all m_b"><input  type="text" ng-model="release.title"></li>
+            <h1 class="f_size">需求量</h1>
+            <li class="m_top4 all m_b"><input  type="text" ng-model="release.num"></li>
+            <h1 class="f_size">需求说明</h1>
+            <li class="m_top4 all m_b hei2 p_top6"><textarea ng-model="release.describe"></textarea></li>
+            <h1 class="f_size">上传照片<span class="f_size0 c_grey p_l">最多上传5张</span></h1>
+            <div class="m_top4">
+                <div class="relative img_w left" style="margin-right: 80%;">
+                    <div class="absolute"><input class="input_photo"  multiple="multiple"  ngf-select="uploads($files)" ng-model="file"  ngf-pattern="'image/*'" accept="image/*" type="file"/></div>
+                    <img src="images/err_03.jpg" width="70">
+                </div>
+                <div class="clear"></div>
+            </div>
+            <li class="m_top4 all m_b hei2 p_top6">
+                <div class="left p_l relative" ng-repeat="img in release.imgs">
+                    <img src="images/err_05.jpg" width="70" style="height:80px;width:80px" ng-src="{{staticUrl+img}}">
+                    <div class="xiance_gb_an" ng-if="release.imgs.length>0">
+                        <img src="images/xiance_gb_an.png"  ng-click="removeImg($index)"width="17" height="17">
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </li>
+        </ul>
+        </div>
+    </div>
+    <div class="l_r w_b">
+     	<div class="w_load wrap">
+        	<ul class="yue">
+            <h1 class="f_size m_top4">需求人姓名</h1>
+            <li class="m_top4 all m_b"><input type="text" ng-model="release.name"></li>
+            <h1 class="f_size">需求人联系方式</h1>
+            <li class="m_top4 all m_b"><input type="text" ng-model="release.mobile"></li>
+            </ul>
+        </div>    
+    </div>
+    </div>
+    <div class="qi t_center" ng-show="photoUp">
+        <h2 class="b_c">上传照片中</h2>
+        <p ng-bind="progress"></p>
+    </div>
+    <div class="box block1" style="opacity: 1" ng-show="photoUp"></div>
+
+<div class="f_size1 bottom w_b">
+      <button class="f_size3 b_huang w_all title" ng-click="configRelease()">确定发布</button>
+</div>

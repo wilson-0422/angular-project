@@ -1,0 +1,137 @@
+<div class="w_all">
+	<ul class="l_r7">
+    	<li class="left w_27 p_left0"><button class="border w_b w_all radius l_r7 f_size" ng-class="{'b_huang':orderInfo.type==1}" ng-click="changeRrturnType(1)">退款退货</button></li>
+    	<li class="left w_27 p_left"><button class="border w_b w_all radius l_r7 f_size" ng-class="{'b_huang':orderInfo.type==2}" ng-click="changeRrturnType(2)">仅退款</button></li>
+    	<li class="left w_27 p_left"><button class="border w_b w_all radius l_r7 f_size" ng-class="{'b_huang':orderInfo.type==3}" ng-click="changeRrturnType(3)">补货换货</button></li>
+        <div class="clear"></div>
+    </ul>
+</div>
+<div class="w_all">
+    <div class="w_all w_b">
+        <div class="l_r9" ui-sref="shopDetails({merchant_id:orderInfo.merchant_id})">
+            <img style="border-radius: 100%;height: 26px;" ng-src="{{orderInfo.merchant_avatar}}" class="l_r5" src="images/jin_03.jpg" width="26">
+            <span ng-bind="orderInfo.merchant_name"></span>
+        </div>
+    </div>
+    <div ng-repeat="goodsAll in orderInfo.info">
+        <div class="t_bottom" ui-sref="CommodityDetails.details_one({pid:goodsAll.product_id})">
+            <div class="w_b l_r7">
+                <div class="left w_25">
+                    <img style="max-height: 80px;" ng-src="{{thumb180Url+goodsAll.product_img}}" src="images/jin_11.jpg" width="80">
+                </div>
+                <div class="right w_75">
+                    <h1 class="f_size" ng-bind="goodsAll.product">欧洲站2014早秋新款气质女装雨伞刺绣蕾丝拼接太空棉蓬蓬连衣裙潮</h1>
+                    <p class="m_top4 f_size" ng-if="goods.items.length>1"><span class="b_huang l_r6 radius2">混批订单</span></p>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="t_bottom w_b l_r7">
+            <p class="f_size b_cc" ng-if="orderInfo.status!=2"><span class="right cheng">￥{{orderInfo.price|number:2}}</span>已付货款<span class="f_size0 c_grey">（不含运费）</span></p>
+            <p class="f_size b_cc" ng-if="orderInfo.status==2"><span class="right cheng">￥{{orderInfo.total_all_price|number:2}}</span>已付货款</p>
+        </div>
+        <div class="t_bottom w_b l_r5 b_huang1">
+            <p class="title">已收货的订单默认不会退还运费，如有疑问请<a href="tel:400-6353-360"><span class="cheng">联系客服</span></a></p>
+        </div>
+        <div class="w_all w_b">
+            <div class="l_r7">
+                <div class="w_05 left">
+                    <div class="relative img_w left radio p_r2 ra_all" ng-click="allGoodsSelect(goodsAll)">
+                        <div class="absolute"><input type="radio"></div>
+                        <img src="images/jin_06.jpg" width="20" ng-if="!goodsAll.is_select">
+                        <img src="images/jin_10.jpg" width="20" ng-if="goodsAll.is_select">
+                    </div>全选
+                </div>
+                <div class="right w_05 t_right">
+                    <span>选择退货退款的商品</span>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="w_all" ng-repeat="goodsSize in goodsAll.items">
+            <div class="t_bottom l_r7" >
+                <div class="w_10 left">
+                    <div class="relative img_w left radio p_r2 raa" ng-click="sizeChange(goodsAll,goodsSize)">
+                        <div class="absolute"><input type="radio"></div>
+                        <img src="images/jin_06.jpg" width="20" ng-if="!goodsSize.is_select">
+                        <img src="images/jin_10.jpg" width="20" ng-if="goodsSize.is_select">
+                    </div>
+                </div>
+                <div class="left w_80" style="width: 90%">
+                    <p class="left w_32">{{goodsSize.color}}：{{goodsSize.size}}</p>
+                    <p class="right w_05 m_right1">
+                        <span class="left w_30 t_center" style="display:inline-block;width:30%">×{{goodsSize.num}}</span>
+                        <span class="right">￥{{goodsSize.price*goodsSize.num}}</span>
+                    </p>
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="t_bottom l_r7 b_huang1 cheng" ng-if="goodsSize.is_select">
+                <div class="left w_all t_center" style="width: 94%" >
+                    <p class="left w_32" style="line-height: 22px;height: 22px">设置退换的数量</p>
+                    <p class="right w_32" style="line-height: 22px;height: 22px;margin-left:5%;width:15%">
+                        <span class="right">￥{{goodsSize.refund_price=(goodsSize.price*goodsSize.refund_num)}}</span>
+                    </p>
+                    <p class="right w_32">
+                        <span class="min bod cheng" ng-click="editNum(goodsSize,0)">-</span>
+                        <span class="bodt" type="text" ng-bind="goodsSize.refund_num"></span>
+                        <span class="add bod cheng" ng-click="editNum(goodsSize,1)">+</span>
+                    </p>
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+    </div>
+<!--<div class="t_bottom l_r7">-->
+	<!--<div class="w_10 left">-->
+        <!--<div class="relative img_w left radio p_r2 raa">-->
+            <!--<div class="absolute"><input type="radio"></div>-->
+            <!--<img src="images/jin_06.jpg" width="20">-->
+        <!--</div>-->
+    <!--</div>-->
+	<!--<div class="left w_80">-->
+	<!--<p class="left w_32">灰色：M码</p>-->
+    <!--<p class="left w_05"><span class="p_r">×1</span>￥339.00</p>-->
+    <!--<div class="clear"></div>-->
+    <!--</div>-->
+    <!--<div class="clear"></div>-->
+<!--</div>-->
+<!--<div class="t_bottom l_r7">-->
+	<!--<div class="w_10 left">-->
+        <!--<div class="relative img_w left radio p_r2 raa">-->
+            <!--<div class="absolute"><input type="radio"></div>-->
+            <!--<img src="images/jin_06.jpg" width="20">-->
+        <!--</div>-->
+    <!--</div>-->
+	<!--<div class="left w_80">-->
+	<!--<p class="left w_32">灰色：M码</p>-->
+    <!--<p class="left w_05"><span class="p_r">×1</span>￥339.00</p>-->
+    <!--<div class="clear"></div>-->
+    <!--</div>-->
+    <!--<div class="clear"></div>-->
+<!--</div>-->
+<div class="l_r7 t_bottom p_b1">
+    <textarea class="border w_67 lin_t"  placeholder="留言备注" ng-model="orderInfo.notice"></textarea>
+    <div class="relative img_w right" style="display: inline-block">
+        <div class="absolute"><input class="l_r bo m_top" style="opacity: 0;width: 88%;position: absolute;line-height:2;"   capture="camera"  ngf-select="upload($file)"  ng-model="file"  ngf-pattern="'image/*'" accept="image/*" type="file"/></div>
+        <img onerror="this.src='images/err_03.jpg'"  ng-src="{{thumb180Url+orderInfo.notice_img}}" width="70">
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="bottom">
+	<div class="w_b l_r7">
+    	<!--<div class="left title_1" ng-if="orderInfo.type==2">退款合计：<span class="cheng">￥{{orderInfo.total_all_price}}</span></div>-->
+    	<div class="left title_1" >退款合计：<span class="cheng">￥{{orderInfo.totlePrice|number:2}}</span></div>
+        <div class="right"><button class="l_r3 b_huang f_size radius" ng-click="applicationReturn()">确定</button></div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="qi t_center" ng-show="photoUp">
+    <h2 class="b_c">上传照片中</h2>
+    <p ng-bind="progress"></p>
+</div>
+<div class="box block1" style="opacity: 1" ng-show="photoUp"></div>
+

@@ -1,0 +1,43 @@
+
+<div class="swiper-container swiper-container1 wrap w_all relative w_b">
+
+    <ks-swiper-container pagination-is-active="true" autoplayDisableOnInteraction="false" initial-slide="0" autoplay="3000" loop="true" show-nav-buttons="false" slides-per-view="1" space-between="0" pagination-clickable="true" override-parameters="{'autoplayDisableOnInteraction':false}">
+        <ks-swiper-slide class="swiper-slide" ng-repeat="img in goodsInfo.images">
+            <img  ng-src="{{staticUrl+img.path}}" style="width:100%;">
+        </ks-swiper-slide>
+    </ks-swiper-container>
+</div>
+  <div class="l_r w_b b_bottom">
+  	<div class="f_size" ng-bind="goodsInfo.title">
+    欧洲站2014早秋新款气质女装雨伞刺绣蕾丝拼接太空棉蓬蓬连衣裙潮
+    </div>
+  </div>  
+  <div class="l_r w_b">
+  	<p class="f_size">供应量：<span ng-bind="goodsInfo.num+'件'">2000</span><span ng-if="goodsInfo.num==0||goodsInfo.num==''">无限</span></p>
+  </div>  
+  <div class="l_r5 m_top4 ">
+  	<p class="f_size" ng-bind="goodsInfo.describe">欧美大牌秋装新款OL通勤气质双排扣连衣裙肩章无袖一步裙女装阿卡夏装新款女装修身蕾丝仙女短袖雪纺连衣裙欧美大牌秋装新款OL通勤气质双排扣连衣裙肩章无袖一步裙女装阿卡夏装新款女装修身蕾丝仙女短袖雪纺连衣裙</p>
+  </div>
+<div class="m_b3 m_top" style="text-align: center;background: oldlace;">
+    <div class="l_r" style="color: #2E93FF;font-size:14px;">
+        供求板块仅供信息交流使用，平台无担保交易需谨慎
+    </div>
+</div>
+   <div class="bottom">
+   	   <ul class="t_center l_title f_size1">
+       	  <li class="left w_05 b_huang jia_bottom">加入进货单</li>
+       </ul>
+   </div>
+  <div class="bottom t_bottom w_b p_b3">
+      <div class="l_r">
+      <div class="left w_63 jia_button f_size">
+      <p>供货人：<span>{{goodsInfo.name}}</span></p>
+      <p>联系方式：<span>{{goodsInfo.mobile}}</span></p>
+      </div>
+      <div class="right">
+          <a href="tel:{{goodsInfo.mobile}}">
+            <button class="b_huang l_r3 title_1 radius f_size">点击联系</button>
+          </a>
+      </div>
+  </div>
+  </div>

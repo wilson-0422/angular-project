@@ -1,0 +1,73 @@
+<div class="relative img_w w_all over">
+    <div class="absolute"><img src="images/ea.jpg"></div>
+    <div class="t_center z_index relative l_r7">
+    	<div class="left w_25 t_right p_top4">
+            <img src="images/ge_06.png" width="40"  ui-sref="MessageCenter()">
+            <i ng-if="userInfo.is_new_mess==1" style="background: red; width: 5px;height: 5px; display: inline-block;position: absolute;right: -8%;top: 10%;border-radius: 50%;"></i>
+        </div>
+        <div class="left w_05 t_center b_cc"><img ng-src="{{userInfo.avatar_path}}" onerror="this.src='images/user_avatar.png'" style="border-radius: 50%;" width="90">
+        	<h1 class="f_size1 l_r4" ng-bind="userInfo.nickname">艾米丽</h1>
+            <p><img src="images/ge_15.jpg" width="14"><span class="p_l f_size" >{{userInfo.mobile}}</span></p>
+        </div>
+    	<div class="left w_25 t_left p_top4"><img src="images/ge_09.jpg" width="40" ng-click="enter_myInfo()"></div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="w_all l_title w_b">
+	<ul class="t_center">
+    	<li class="b_r left f_size1 w_05 sheng" ng-click="sginDay(userInfo)">
+        	<img class="p_r1 m_img" src="images/ge_22.jpg" width="30">
+            <span ng-if="userInfo.is_sign==1">今日已签到</span>
+            <span ng-if="userInfo.is_sign==0">今日未签到</span>
+        </li>
+    	<li class="b_r left f_size w_05" ui-sref="integralsCenter()">
+        	<img class="p_r m_img" src="images/ge_19.jpg" width="32"><span class="cheng f_size1 p_r1">{{userInfo.score}}</span>分
+        </li>
+        <div class="clear"></div>
+    </ul>
+</div>
+<div class="w_b m_top4">
+	<h1 class="f_size l_r7 b_bottom" ui-sref="myOrders({status:0})"><span class="right c_grey">全部订单></span>我的订单</h1>
+	<div class="l_r7">
+    	<ul>
+        	<li class="left w_20 t_center" ui-sref="myOrders({status:1})">
+            	<img src="images/ge_27.jpg" width="50"><p class="p_top6">待付款</p>
+            </li>
+        	<li class="left w_20 t_center" ui-sref="myOrders({status:2})">
+            	<img src="images/ge_29.jpg" width="50"><p class="p_top6">待发货</p>
+            </li>
+        	<li class="left w_20 t_center" ui-sref="myOrders({status:3})">
+            	<img src="images/ge_31.jpg" width="50"><p class="p_top6">待收货</p>
+            </li>
+        	<li class="left w_20 t_center" ui-sref="myOrders({status:4})">
+            	<img src="images/ge_33.jpg" width="50"><p class="p_top6">待评价</p>
+            </li>
+        	<li class="left w_20 t_center" ui-sref="Returns()">
+            	<img src="images/ge_35.jpg" width="50"><p class="p_top6">退换货</p>
+            </li>
+            <div class="clear"></div>
+        </ul>
+    </div>
+</div>
+<div class="w_all m_top4 w_b">
+    <ul>
+        <li class="left l_r9 w_25 t_center b_r" ui-sref="myCrowdfunding()">
+            <img src="images/ge_43.jpg" width="50"><p class="p_top6">我的众筹</p>
+        </li>
+        <li class="left l_r9 w_25 t_center b_r" ui-sref="collection()">
+            <img src="images/ge_46.jpg" width="50"><p class="p_top6">关注收藏</p>
+        </li>
+        <li class="left l_r9 w_25 t_center b_r" ui-sref="mySupply()">
+            <img src="images/ge_48.jpg" width="50"><p class="p_top6">我的供求</p>
+        </li>
+        <li class="left l_r9 w_25 t_center" ui-sref="ShippingAddress()">
+            <img src="images/ge_50.jpg" width="50"><p class="p_top6">收货地址</p>
+        </li>
+        <div class="clear"></div>
+    </ul>
+</div>
+<div class="l_r7 w_b m_top4">
+	<p class="f_size1" style="line-height: 30px;"><span class="right"><img class="m_img" src="images/t_09.jpg" width="10"></span><img class="p_r2" src="images/ge_58.jpg" width="30">客服电话：
+        <a href="tel:400-6353-360">400-6353-360</a> </p>
+</div>
+<div style="width: 100%;height: 80px; background-color: #f6f6f6;"></div>

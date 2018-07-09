@@ -1,0 +1,39 @@
+<div class="b_huang l_r2 boss">
+    <div class="l_r10">
+    <div class="sea f_size1 t_center gong radius">
+    	<ul>
+        	<li class="w_05 left" ng-class="{'gong_hover':mySupply==1}" ng-click="myCollection(1)">发布的</li>
+        	<li class="w_05 left" ng-class="{'gong_hover':mySupply==2}" ng-click="myCollection(2)">收藏的</li>
+        </ul>
+    </div>
+    </div>
+    <div class="clear"></div>
+   </div>
+<div class="w_all gong_content" ng-if="mySupply==1">
+    <dl class="m_top2 l_r2 w_b" ng-repeat="supply in mySupplyList" >
+        <dt class="w_25 left"><img ng-src="{{staticUrl+supply.images[0].path}}" style="width:90px;height:90px" ui-sref="supplyDemandInfo({tid:supply.tid})"></dt>
+        <dd class="w_75 right">
+            <h1 class="f_size" ng-bind="supply.title" ui-sref="supplyDemandInfo({tid:supply.tid})"></h1>
+            <p class="p_top3 w_75 left" ng-if="supply.type==1" ui-sref="supplyDemandInfo({tid:supply.tid})"><span class="blue l_r5 l_r6 radius2">供应</span></p>
+            <p class="p_top3 w_75 left" ng-if="supply.type==2" ui-sref="supplyDemandInfo({tid:supply.tid})"><span class="b_cheng w_f l_r5 radius">需求</span></p>
+            <p class="p_top3 right" >
+                <span class="right" style="width: 50%" ng-click="delGoods(supply)">
+                    <img src="images/del.png" alt=""/>
+                </span></p>
+            <p class="p_top3"  style="margin-top: 36px;" ui-sref="supplyDemandInfo({tid:supply.tid})"><span class="right" ng-bind="supply.created_at*1000|date:'yyyy-MM-dd'">2016-07-12 18:31:22</span><span ng-if="supply.type==1">供应量</span><span ng-if="supply.type==2">需求量</span>：<span ng-bind="supply.num" ng-if="supply.num>0"></span><span ng-if="supply.num==0">不限</span></p>
+        </dd>
+        <div class="clear"></div>
+    </dl>
+</div>
+<div class="w_all gong_content" ng-if="mySupply==2">
+    <dl class="m_top2 l_r2 w_b" ng-repeat="supplys in mySupplyList"  ui-sref="supplyDemandInfo({tid:supplys.supply.tid})">
+        <dt class="w_25 left"><img ng-src="{{staticUrl+supplys.supply.images[0].path}}" style="width:90px;height:90px"></dt>
+        <dd class="w_75 right">
+            <h1 class="f_size" ng-bind="supplys.supply.title"></h1>
+            <p class="p_top3 w_75 left" ng-if="supplys.supply.type==1"><span class="blue l_r5 l_r6 radius2">供应</span></p>
+            <p class="p_top3 w_75 left" ng-if="supplys.supply.type==2"><span class="b_cheng w_f l_r5 radius">需求</span></p>
+            <p class="p_top3" style="margin-top: 36px;"><span class="right" ng-bind="supplys.supply.created_at*1000|date:'yyyy-MM-dd'">2016-07-12 18:31:22</span><span ng-if="supplys.supply.type==1">供应量</span><span ng-if="supplys.supply.type==2">需求量</span>：<span ng-bind="supplys.supply.num" ng-if="supplys.supply.num>0"></span><span ng-if="supplys.supply.num==0">不限</span></p>
+        </dd>
+        <div class="clear"></div>
+    </dl>
+</div>

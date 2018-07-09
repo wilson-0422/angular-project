@@ -1,0 +1,240 @@
+<div class="w_all">
+    <img class="w_all" src="images/es_02.jpg" ng-if="orderInfo.status == 2"  alt="等待卖家发货">
+    <img class="m_img w_all" src="images/fa1_02.jpg" ng-if="orderInfo.status == 3"  alt="卖家已发货">
+    <img class="m_img w_all" src="images/esa_02.jpg" ng-if="orderInfo.status == 4"  alt="交易成功">
+</div>
+<div class="l_r7 w_b" ng-click="changeAddress(orderInfo.status)">
+    <div class="w_10 left">
+        <div class="left l_title">
+            <img class="m_img" src="images/ed_05.jpg">
+        </div>
+    </div>
+    <div class="right w_95">
+        <h1 class="f_size b_cc">收货人：{{orderInfo.address_member}}<span class="p_l">{{orderInfo.address_mobile}}</span></h1>
+        <p class="m_top4 w_80">收货地址：{{orderInfo.address}}</p>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="l_r7 w_b t_bottom" ng-if="orderInfo.status != 1">
+    <div class="w_10 left">
+        <div class="left">
+            <img class="m_img" src="images/es_05.jpg" width="16">
+        </div>
+    </div>
+    <div class="right w_95">
+        <p class="f_size b_cc">留言备注：{{orderInfo.note}}</p>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="waa m_top4">
+    <div class="w_all w_b">
+        <div class="l_r7">
+            <div class="w_67 left" ui-sref="shopDetails({merchant_id:orderInfo.merchant_id})">
+                <img style="border-radius: 100%;height: 26px;" ng-src="{{orderInfo.merchant_avatar|imgFilter:0}}" class="l_r5" src="images/jin_03.jpg" width="26">
+                <span ng-bind="orderInfo.merchant_name"></span>
+            </div>
+            <div class="right w_33 t_right" ng-click="showMsg(orderInfo.privilege_desc)">
+                <span>优惠说明</span>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+<div ng-repeat="goods in orderInfo.info">
+    <div class="t_bottom" ui-sref="CommodityDetails.details_one({pid:goods.product_id})">
+        <div class="w_b l_r7">
+            <div class="left w_25" style="height:80px;">
+                <img style="max-height: 80px;" ng-src="{{thumb180Url+goods.product_img}}" src="images/jin_11.jpg" width="80">
+            </div>
+            <div class="right w_75">
+                <h1 class="f_size" ng-bind="goods.product">欧洲站2014早秋新款气质女装雨伞刺绣蕾丝拼接太空棉蓬蓬连衣裙潮</h1>
+                <!--<p class="m_top4 f_size" ng-if="goods.items.length>1"><span class="b_huang l_r6 radius2">混批订单</span></p>-->
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div ng-repeat="goodsSize in goods.items" ng-if="goodsSize.num!=0">
+        <div class="t_bottom l_r7" >
+            <p class="left w_32"><span>{{goodsSize.color}}：</span><span>{{goodsSize.size}}</span><span ng-if="goodsSize.size!='均码'">码</span></p>
+            <p class="left w_05"><span class="p_r">×{{goodsSize.num}}</span>￥{{goodsSize.price*goodsSize.num}}</p>
+            <div class="clear"></div>
+        </div>
+        <div class="t_bottom b_huang1 l_r7" ng-if="goodsSize.is_lose==2">
+            <p class="left w_32" ng-if="goodsSize.is_lose==2">实际库存 x<span ng-bind="goodsSize.real_num"></span></p>
+            <p class="left w_05" ng-if="goodsSize.is_lose==2">退换货款￥{{goodsSize.price*(goodsSize.num-goodsSize.real_num)}}</p>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+<div class="w_all p_b1"  ng-if="orderInfo.status != 1">
+    <div class="t_bottom w_b l_r7">
+        <p><span class="right">￥<span ng-bind="orderInfo.post_fee" ng-if="orderInfo.post_fee!=''">22.00</span><span ng-if="orderInfo.post_fee==''">0.00</span></span>运费</p>
+    </div>
+    <div class="t_bottom w_b l_r7">
+        <p class="f_size b_cc">￥<span class="right cheng" ng-bind="orderInfo.total_all_price|number:2"></span>实付款<span class="f_size0 c_grey">（含运费）</span></p>
+    </div>
+    <div class="t_bottom">
+        <div class="w_b l_r7">
+            <div class="left w_65">
+                <p ng-repeat="time in orderInfo.order_log">{{time.order_status_title}}：{{time.created_at*1000|date:'yyyy-MM-dd HH:mm:ss'}}</p>
+            </div>
+            <div class="left w_65">
+                <p>创建时间：{{orderInfo.created_at*1000|date:'yyyy-MM-dd HH:mm:ss'}}</p>
+                <p>订单编号：{{orderInfo.order_sn}}</p>
+            </div>
+            <div class="right w_27" ng-if="orderInfo.status==3||orderInfo.status==4||(orderInfo.type==0&&orderInfo.status==2)">
+                <button class="l_r2 cheng f_size radius border grey" ui-sref="applicationService({oid:orderInfo.order_id})">申请售后</button>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+
+<div class="w_all p_b1" ng-if="orderInfo.status == 1">
+    <!--<div class="t_bottom w_b l_r7 f_size">-->
+        <!--<p class="b_cc"><span class="right c_grey">微信支付 ></span>支付方式</p>-->
+    <!--</div>-->
+    <div class="t_bottom w_b l_r7 f_size">
+        <p class="b_cc"><span class="right c_grey">￥<span ng-bind="orderInfo.post_fee" ng-if="orderInfo.post_fee!=''">22.00</span><span ng-if="orderInfo.post_fee==''">0.00</span></span>运费计算</p>
+    </div>
+
+    <div class="t_bottom w_b l_r7 f_size" style="overflow: hidden" ng-click="showBox.note=true">
+
+        <div style="width: 20%;float: left">
+            <span>留言备注</span>
+        </div>
+        <div style="width: 76%;float: left;">
+            <span class="text_line" ng-bind="orderInfo.note"></span>
+        </div>
+        <div style="float: right"><span> > </span></div>
+    </div>
+    <div class="t_bottom w_b l_r7 f_size">
+        <div>
+            运输方式: <span ng-if="orderInfo.pick_type == 2">自提</span><span ng-if="orderInfo.pick_type == 1">配送</span>
+        </div>
+    </div>
+
+    <!--<div class="l_r7 w_b t_bottom">-->
+        <!--<textarea class="border w_90 l_r7 lin_t"  placeholder="留言备注"></textarea>-->
+    <!--</div>-->
+    <div class="bottom t_bottom">
+        <div class="w_b l_r7">
+            <div class="left">
+                <p>总计：<span class="cheng f_size1">￥{{orderInfo.total_all_price | number:2}}</span> </p>
+                <p class="c_grey">共<span ng-bind="orderInfo.num"></span>件含运费</p>
+            </div>
+            <div class="right"><a ng-href="{{orderInfo.pay_url}}"><button class="l_r8 b_huang f_size radius">确认结算</button></a></div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+<div class="bottom t_bottom" ng-if="orderInfo.status==4">
+    <div class="w_b l_r7">
+        <div class="left"><button class="l_r6 grey f_size radius border" ng-click="deleteOrder(orderInfo)">删除订单</button></div>
+        <div class="right"><button class="l_r6 grey f_size radius border shengt" ng-click="clickevaluate(orderInfo)">点击评价</button></div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="bottom t_bottom" ng-if="orderInfo.status==3">
+    <div class="w_b l_r7">
+        <div class="right"><button class="l_r6 grey f_size radius border shengt" ng-click="comfigeOrder()">确认收货</button></div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="bottom w_b t_bottom" ng-if="orderInfo.is_lose==2">
+    <div class="t_bottom title t_center l_r7">
+        <div class="left w_49">
+            <button class="w_b b_huang w_all radius l_r7" ng-click="partLose(1)">整单取消全额退款</button>
+        </div>
+        <div class="right w_49">
+            <button class="w_b b_huang w_all radius l_r7" ng-click="partLose(2)">缺货商品退差价</button>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="qi relative" ng-show="showBox.note">
+    <div class="l_r3">
+        <h1 class="wei f_size1 t_center b_cc p_b3">留言备注</h1>
+        <div class="m_top1 m_b1 t_center">
+            <textarea class="border w_90 l_r7 lin_t"  placeholder="留言备注"  ng-model="orderInfo.note"></textarea>
+        </div>
+    </div>
+    <div class="t_bottom title t_center m_top2">
+        <button class="f_size1 cheng w_05 b_r left title" ng-click="showBox.note=false">取消</button>
+        <button class="f_size1 cheng w_05 left w_b title" ng-click="setOrderNote()">确认</button>
+    </div>
+</div>
+<div class="box block1" ng-show="showBox.note" ng-click="showBox.note=false"></div>
+
+<!--<div class="qi relative" ng-show="orderInfo.is_lose==2">-->
+    <!--<div class="l_r3">-->
+        <!--<h1 class="wei f_size1 t_center cheng">订单中部分商品无货</h1>-->
+        <!--<p class="f_size0">以下商品无货</p>-->
+        <!--<div class="t_bottom p_top6">-->
+            <!--<p class="left w_32 f_size0">灰色：M码</p>-->
+            <!--<p class="left w_05 f_size0"><span class="p_r">×1</span>￥339.00</p>-->
+            <!--<div class="clear"></div>-->
+        <!--</div>-->
+        <!--<div class="t_bottom p_top6">-->
+            <!--<p class="left w_32 f_size0">灰色：M码</p>-->
+            <!--<p class="left w_05 f_size0"><span class="p_r">×1</span>￥339.00</p>-->
+            <!--<div class="clear"></div>-->
+        <!--</div>-->
+        <!--<div class="t_bottom p_top6">-->
+            <!--<p class="left w_32 f_size0">藏青色：XL码</p>-->
+            <!--<p class="left w_05 f_size0"><span class="p_r">×1</span>￥339.00</p>-->
+            <!--<div class="clear"></div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+
+<div class="qi relative" ng-show="showQue.note">
+    <div class="l_r3">
+        <h1 class="wei f_size1 t_center b_cc p_b3">提示</h1>
+        <div class="m_top1 m_b1 t_center">
+            <span class="w_90 l_r7 lin_t"> 该订单存在缺货商品，请选择处理订单方式~</span>
+        </div>
+    </div>
+    <div class="t_bottom title t_center m_top2">
+        <button class="f_size1 cheng  left w_b title" style="width: 100%;" ng-click="showQue.note=!showQue.note">确认</button>
+    </div>
+</div>
+<div class="box block1" ng-show="showQue.note" ng-click=""></div>
+
+<!--评价模态框-->
+<div class="qi relative" ng-show="evaluate">
+    <h1 class="wei f_size1 t_center cheng p_b">评价</h1>
+    <div class="l_r7 grey">
+        <div class="waa m_top4">
+            <div class="left w_20 p_left">发货</div>
+            <div class="order left p_left0 w_72">
+                <ul>
+                    <li ng-repeat="star in stars" ng-class="{'on':lightStarF[$index]==star}" ng-click="changeStar($index,1)"></li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="waa m_top1">
+            <div class="left w_20 p_left">物流</div>
+            <div class="order left p_left0 w_72">
+                <ul>
+                    <li ng-repeat="star in stars" ng-class="{'on':lightStarW[$index]==star}" ng-click="changeStar($index,2)"></li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="waa m_top1 m_b">
+            <div class="left w_20 p_left">品质</div>
+            <div class="order left p_left0 w_72">
+                <ul>
+                    <li ng-repeat="star in stars" ng-class="{'on':lightStarP[$index]==star}" ng-click="changeStar($index,3)"></li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="t_bottom title t_center l_r7">
+        <button class="f_size1 cheng b_none" ng-click="evaluateOrder()">确认评价</button>
+    </div>
+</div>
+<div class="box block1" ng-show="evaluate" ng-click="evaluate=!evaluate"></div>

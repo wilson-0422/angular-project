@@ -1,0 +1,21 @@
+<div class="l_r7 b_huang2">
+	<div class="left"><img class="m_img" src="images/g_03.jpg" width="56"></div>
+    <div class="right f_size3">
+    	<span class="fenm">{{userInfo.score}}</span>分
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="w_all" infinite-scroll='load.nextPage()' infinite-scroll-disabled='load.busy' infinite-scroll-distance='1'>
+	<h1 class="f_size b_bottom huang l_r5">积分明细(积分获取方式：注册、完善资料、每日签到、下单采购、确认收货、评价订单可送积分)</h1>
+    <div class="l_r7 b_bottom" ng-repeat="score in goodsList"><p class="c_grey">{{score.created_at*1000|date:'yyyy-MM-dd  HH-mm-ss'}}</p>
+    <p class="f_size m_top2 b_cc"><span class="right"><span ng-if="score.type==1">+</span><span ng-if="score.type==2">-</span>{{score.num}}分</span>{{score.describe}}</p>
+    </div>
+    <!--<div class="l_r7 b_bottom"><p class="c_grey">2016-07-21  12:00:00</p>-->
+    <!--<p class="f_size m_top2 b_cc"><span class="right">+10分</span>签到</p>-->
+    <!--</div>-->
+    <!--<div class="l_r7 b_bottom"><p class="c_grey">2016-07-21  12:00:00</p>-->
+    <!--<p class="f_size m_top2 b_cc"><span class="right">-100分</span>发布供求</p>-->
+    <!--</div>-->
+    <div class="clear"></div>
+    <div ng-show='load.busy' class="down_updata">加载中...</div>
+</div>

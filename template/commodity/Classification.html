@@ -1,0 +1,66 @@
+<div class="m_top4" ng-if="labelGe.length!=''">
+    <div class="wrap l_r2 w_b">
+        <h1 class="f_size lint_t p_b">风格</h1>
+        <div class="border w_b fen_b">
+            <ul>
+                <li class="w_25 b_r left"  ng-repeat="ge in labelGe" ui-sref="index.FindThe({keyWord:ge.name})">
+                    <div class="l_r2">
+                        <p class="l_r2"><img src="images/le_03.jpg" ng-src="{{staticUrl+ge.path}}"></p>
+                        <p class="t_center">{{ge.name}}</p>
+                    </div>
+                </li>
+                <div class="clear"></div>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="m_top4" ng-if="labelType.length!=''">
+    <div class="wrap l_r2 w_b">
+        <h1 class="f_size lint_t p_b">品类</h1>
+        <div class="border w_b fen_b">
+            <ul>
+                <li class="w_25 b_r left" ng-repeat="sort in labelType" ui-sref="index.FindThe({keyWord:sort.name})">
+                <div class="l_r2">
+                <p class="l_r2"><img src="images/fen_03.jpg" ng-src="{{staticUrl+sort.path}}"></p>
+                <p class="t_center">{{sort.name}}</p>
+                </div></li>
+                <div class="clear"></div>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="m_top4" ng-if="labelEle.length!=''">
+    <div class="wrap l_r2 w_b">
+        <h1 class="f_size lint_t p_b">元素</h1>
+        <div class="border w_b fen_b">
+            <ul>
+                <li class="w_25 b_r left"  ng-repeat="Ele in labelEle" ui-sref="index.FindThe({keyWord:Ele.name})">
+                    <div class="l_r2">
+                        <p class="l_r2"><img src="images/le_03.jpg" ng-src="{{staticUrl+Ele.path}}"></p>
+                        <p class="t_center">{{Ele.name}}</p>
+                    </div>
+                </li>
+                <div class="clear"></div>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="m_top4" ng-if="labelFabric.length!=''">
+<div class="wrap l_r2 w_b">
+    <h1 class="f_size lint_t p_b">面料</h1>
+    <div class="border w_b fen_b">
+        <ul>
+            <li class="w_25 b_r left"  ng-repeat="label in labelFabric" ui-sref="index.FindThe({keyWord:label.name})">
+                <div class="l_r2">
+                    <p class="l_r2"><img src="images/le_03.jpg" ng-src="{{staticUrl+label.path}}"></p>
+                    <p class="t_center">{{label.name}}</p>
+                </div>
+            </li>
+            <div class="clear"></div>
+        </ul>
+    </div>
+</div>
+</div>
+
+
+

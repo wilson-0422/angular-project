@@ -1,0 +1,30 @@
+<div infinite-scroll='load.nextPage()' infinite-scroll-disabled='load.busy' infinite-scroll-distance='1'>
+    <div ng-repeat="msg in msgList">
+        <div class="l_r7 t_center c_grey">{{msg.created_at*1000|date:'yyyy.MM.dd'}}</div>
+        <div class="w_b l_r7">
+            <h1 class="f_size m_b" ng-bind="msg.content">众筹成功</h1>
+            <!--<div class="left">-->
+                <!--<img src="images/ew_11.jpg" width="52">-->
+            <!--</div>-->
+            <!--<div class="right w_80">-->
+                <!--<div class="left w_95 c_grey">您的众筹17880635990已成功完成，如有差价退款会在规定时间内结算，感谢您对尚社织坊的支持，欢迎再次光临。</div>-->
+                <!--<div class="right w_5"><img class="p_top" src="images/t_09.jpg" width="8"></div>-->
+            <!--</div>-->
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+
+
+<!--<div class="l_r7 t_center c_grey">昨天 10:36</div>-->
+<!--<div class="w_b l_r7">-->
+	<!--<h1 class="f_size m_b">众筹失败</h1>-->
+	<!--<div class="left">-->
+        <!--<img src="images/ew_11.jpg" width="52">-->
+    <!--</div>-->
+    <!--<div class="right w_80">-->
+        <!--<div class="left w_95 c_grey">您的众筹17880635990已成功完成，如有差价退款会在规定时间内结算，感谢您对尚社织坊的支持，欢迎再次光临。</div>-->
+        <!--<div class="right w_5"><img class="p_top" src="images/t_09.jpg" width="8"></div>-->
+    <!--</div>-->
+    <!--<div class="clear"></div>-->
+<!--</div>-->

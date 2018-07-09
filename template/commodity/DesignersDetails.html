@@ -1,0 +1,132 @@
+<div class="m_b2">
+    <div class="w_b">
+        <div class="w_all relative">
+            <div class="absolute a_bottom j_black" ng-bind="detailsInfo.product_name">老上海记忆·碎花旗袍</div>
+            <img src="images/21b9.png" ng-src="{{staticUrl+detailsInfo.img_path}}">
+        </div>
+        <div class="wrap jingdu p_top6">
+            <ul>
+                <li class="left shadow t_center price" ng-repeat="order in detailsInfo.price">
+                    <p ng-if="order.num2!=1000000">{{order.num1+'件'}}~{{order.num2-1+'件'}}</p>
+                    <p ng-if="order.num2==1000000">{{order.num1+'件以上'}}</p>
+
+                    <p ng-bind="order.price">￥799.00</p>
+                </li>
+                <!--<li class="left shadow t_center">-->
+                <!--<p>10~30件</p>-->
+                <!--<p>￥749.00</p>-->
+                <!--</li>-->
+                <!--<li class="left shadow t_center">-->
+                <!--<p>50~100件</p>-->
+                <!--<p>￥649.00</p>-->
+                <!--</li>-->
+                <!--<li class="left shadow t_center">-->
+                <!--<p>100件以上</p>-->
+                <!--<p>￥499.00</p>-->
+                <!--</li>-->
+                <div class="clear"></div>
+            </ul>
+            <div class="bo relative w_100 jing m_top4" style="overflow: hidden;" ng-if="detailsInfo.activity_now_number==0">
+                <div class="w_auto bo o_b" style="width:0"></div>
+            </div>
+            <div class="bo relative w_100 jing m_top4" style="overflow: hidden;" ng-if="detailsInfo.activity_now_number<detailsInfo.price[0].num2 && detailsInfo.activity_now_number>0">
+                <div class="w_auto bo o_b" style="width: 12.5%"></div>
+            </div>
+            <div class="bo relative w_100 jing m_top4" style="overflow: hidden;" ng-if="detailsInfo.activity_now_number>=detailsInfo.price[1].num1 && detailsInfo.activity_now_number<detailsInfo.price[1].num2">
+                <div class="w_auto bo o_b" style="width: 37.5%"></div>
+            </div>
+            <div class="bo relative w_100 jing m_top4" style="overflow: hidden;" ng-if="detailsInfo.activity_now_number>=detailsInfo.price[2].num1&&detailsInfo.activity_now_number<detailsInfo.price[2].num2">
+                <div class="w_auto bo o_b" style="width: 62.5%"></div>
+            </div>
+            <div class="bo relative w_100 jing m_top4" style="overflow: hidden;" ng-if="detailsInfo.activity_now_number>=detailsInfo.price[3].num1">
+                <div class="w_auto bo o_b" style="width: 87.5%"></div>
+            </div>
+            <div class="m_top4 p_b3">
+                <p>当前预定数量：<span class="cheng">{{detailsInfo.activity_now_number}}</span>件</p>
+                <p>{{'交货周期：'+detailsInfo.lead_time}}</p>
+                <p>截止：{{detailsInfo.end_time*1000|date:'yyyy-MM-dd HH:mm:ss'}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="t_bottom w_b">
+        <p class="l_r">众筹说明：此项目完成最低标准即可成功，并且将会在截止日期结束后的规定时间发货。</p>
+    </div>
+    <div class="wrap grey p_top6" ng-bind-html="detailsInfo.describe|trustHtml"><img src="images/ew_02.jpg"></div>
+</div>
+        <!--<div class="bottom t_bottom w_b">-->
+        	<!--<div class="l_r">-->
+        	<!--<div class="left w_27 jia_button" style="width: 34%;">-->
+            	<!--<div class="shuma w_all">-->
+                    <!--<span class="min bod cheng w_20" ng-click="addNum(-1)">-</span>-->
+                    <!--<input class="bodt w_60" name="goodnum" type="text" value="1" ng-model="goodnum" disabled="disabled"/>-->
+                    <!--<span class="add bod cheng w_20" ng-click="addNum(1)">+</span>-->
+                    <!--<div class="clear"></div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="right" style="height: 32px;width:65%;text-align: right">-->
+            	<!--<span class="p_r1">当前单价：</span><span class="f_size cheng p_r1">￥{{designersPrice}}</span>-->
+                <!--<button class="b_huang l_r6 radius f_size" ng-click="uploadOrder()">确认</button>-->
+            <!--</div>-->
+            <!--<div class="clear"></div>-->
+        <!--</div>-->
+        <!--</div>-->
+<div class="bottom">
+    <ul class="t_center l_title f_size1 jia_bottom">
+        <li class="left w_all b_huang" ng-click="enterShopCar()">参与众筹</li>
+    </ul>
+</div>
+<div class="bottom w_b jia_content" ng-show="joinShopList.order" style="z-index: 100000">
+    <div class="l_r7 b_bottom">
+        <div class="left w_32">
+            <img onerror="this.src='images/yipi_goods.png'" ng-src="{{thumb180Url+detailsInfo.img_path}}" width="104">
+        </div>
+        <div class="right w_63">
+            <div class="t_right" ><img class="close_content" src="images/raw.jpg" width="24" ng-click="joinShopList.order=false"></div>
+            <div class="w_90">
+                <h1 class="f_size p_b">{{detailsInfo.product_name}}</h1>
+                <p class="cheng f_size">
+                    <span ng-bind="'￥'+detailsInfo.price[0].price" ng-if="detailsInfo.price[0].price!=null"></span>
+                    <span ng-bind="'~￥'+detailsInfo.price[1].price" ng-if="detailsInfo.price[2].price==null&&detailsInfo.price[1].price!=null"></span>
+                    <span ng-bind="'~￥'+detailsInfo.price[2].price" ng-if="detailsInfo.price[3].price==null&&detailsInfo.price[2].price!=null"></span>
+                    <span ng-bind="'~￥'+detailsInfo.price[3].price" ng-if="detailsInfo.price[4].price==null&&detailsInfo.price[3].price!=null"></span>
+                </p>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="l_r5 wrap color b_bottom">
+
+        <ks-swiper-container pagination-is-active="false" initial-slide="0" loop="false" slides-per-view="5" space-between="5" pagination-clickable="true">
+            <ks-swiper-slide ng-repeat="color in detailsInfo.attribute">
+                <span ng-class="{'hover':priceList==$index}" ng-bind="color.name" ng-click="changeColor($index)"></span>
+            </ks-swiper-slide>
+        </ks-swiper-container>
+        <div class="ma" ng-repeat="color in detailsInfo.attribute" ng-if="priceList==$index">
+            <dl class="b_bottom" ng-repeat="sizesInfo in color.size">
+                <dt class="left w_32 f_size" ng-bind="sizesInfo.name">M码<span ng-if="sizesInfo.name=='均码'">码</span></dt>
+                <dd class="right w_54">
+                    <p class="left c_grey w_40 t_center" ng-bind="sizesInfo.stock">库存 {{sizesInfo.stock}}</p>
+                    <p class="left w_60 shuma">
+                        <span class="min bod cheng" style="padding:0;display:block" ng-click="changeOne(sizesInfo,-1)">-</span>
+                        <input class="bodt"  disabled="disabled" type="text" placeholder="0" ng-model="sizesInfo.num" ng-blur="changeInput(sizesInfo)"/>
+                        <span class="add bod cheng" style="padding:0;display:block" ng-click="changeOne(sizesInfo,1)">+</span>
+                    </p>
+                </dd>
+                <div class="clear"></div>
+            </dl>
+            <div class="l_r">
+                <div class="left jia_button">
+                    <button class="f_size w_f b_cheng" ng-click="addNumAll()">加一手</button>
+                    <button class="cheng f_size bb_cheng w_b" ng-click="reduceNumAll()">减一手</button>
+                </div>
+                <div class="right title">
+                    <span class="p_r1">共<em class="cheng" ng-bind="totleNum">2</em>件</span><span class="f_size cheng">￥{{designersPrice}}</span>
+                </div>
+            </div>
+            <button class="f_size1 l_title b_huang w_all m_top4" ng-click="uploadOrder()">确定</button>
+        </div>
+    </div>
+</div>
+
+<div class="box box2" style="opacity: 1;" ng-show="joinShopList.order" ng-click="joinShopList.order=false"></div>
+

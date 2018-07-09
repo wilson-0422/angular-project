@@ -1,0 +1,31 @@
+
+<div class="waa" style="overflow: hidden;">
+<div class="l_r7 w_b" style="margin-bottom: 10px;position: relative;" ng-repeat="address in addressList">
+	<div class="w_10 left" >
+        <div class="relative img_w left rde l_title">
+            <div class="absolute"><input type="radio"></div>
+            <img class="m_img" src="images/d_03.jpg" width="20" ng-if="address.is_default == 1" >
+            <img class="m_img" src="images/d_06.jpg" width="20" ng-if="address.is_default == 0">
+        </div>
+    </div>
+    <div class="right w_95">
+    	<h1 class="f_size b_cc">
+            <span class="f_size0 right c_rde c_grey" ng-if="address.is_default == 1">默认</span>
+            <span class="f_size0 right c_rde c_grey" ng-if="address.is_default == 0"  ng-click="is_default(address)">设为默认</span>
+            <span ng-bind="'收货人：'+address.uname">收货人：陈海</span>
+            <span class="p_l" ng-bind="address.mobile">15502188888</span>
+        </h1>
+        <p class="m_top4 w_80" style="float: left;" ng-bind="'收货地址：'+address.address_str+address.street">收货地址：上海市黄浦区老西门街道陆家浜路1139号
+六角大楼写字楼409室</p>
+        <div style="float: right;padding-top: 26px;" ng-click="DeleteInfo(address)">删除</div>
+    </div>
+    <div class="clear"></div>
+
+    <!--<div class="btn_delete">删除</div>-->
+</div>
+</div>
+<div class="f_size1 bottom">
+	<div class="w_load p_b3" ui-sref="newAddress()">
+      <button class="bo m_top1 f_size1 radius1">新增地址</button>
+    </div>
+</div>

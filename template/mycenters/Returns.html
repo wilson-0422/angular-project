@@ -1,0 +1,106 @@
+
+<div class="w_b l_r5 tuihuo f_size">
+	<ul>
+    	<li class="left w_32 t_center" ng-click="changeListType()"><span ng-class="{'hover':orderType==''||orderType==null}">全部</span></li>
+        <li class="left w_32 t_center" ng-click="changeListType(1)"><span ng-class="{'hover':orderType==1}">处理中</span></li>
+        <li class="left w_32 t_center" ng-click="changeListType(2)"><span ng-class="{'hover':orderType==2}">已处理</span></li>
+        <div class="clear"></div>
+    </ul>
+</div>
+<div infinite-scroll='load.nextPage()' infinite-scroll-disabled='load.busy' infinite-scroll-distance='1'>
+    <div class="waa m_top4" ng-repeat="returnInfo in returnList">
+        <div class="w_all w_b" >
+            <div class="l_r7">
+                <div class="w_67 left">
+                    <img class="l_r5" width="26" ng-src="{{returnInfo.merch_avatar|imgFilter:returnInfo.order_type}}" style="width: 26px;height: 26px; border-radius: 50%;">
+                    <span style="margin-top: 2%; display: inline-block;" ng-bind="returnInfo.merch_name"></span>
+                </div>
+                <div class="right w_33 t_right">
+                    <span class="cheng" ng-bind="returnText[returnInfo.status]">处理中</span>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="t_bottom" ng-repeat="returnGoods in returnInfo.refund_info">
+            <div class="w_b l_r7">
+                <div class="left w_25">
+                    <img ng-src="{{thumb180Url+returnGoods.product_avatar}}" width="80">
+                </div>
+                <div class="right w_75">
+                    <h1 class="f_size" ng-bind="returnGoods.product_name">欧洲站2014早秋新款气质女装雨伞刺绣蕾丝拼接太空棉蓬蓬连衣裙潮</h1>
+                    <p class="m_top4 c_grey f_size">颜色：{{returnGoods.size_json[0].color}}<span class="p_l">尺码：{{returnGoods.size_json[0].size}}</span></p>
+                    <!--<p class="m_top4 c_grey f_size" ng-if="returnInfo.refund_info.length==1">颜色：{{returnGoods.size_json[0].color}}<span class="p_l">尺码：{{returnGoods.size_json[0].size}}</span></p>
+                    <p class="m_top4 f_size" ng-if="returnInfo.refund_info.length!=1"><span class="b_huang l_r6 radius2">混批订单</span>--></p>
+                    <p class="m_top4 f_size"><span class="c_blue c_border l_r2 radius" ng-bind="refundType[returnInfo.refund_type]">团购</span></p>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="t_bottom">
+            <div class="w_b l_r7">
+                <p><span class="right">退款金额:￥{{returnInfo.refund_price}}</span>交易金额:￥{{returnInfo.order_price}}</p>
+            </div>
+        </div>
+        <div class="t_bottom">
+            <div class="w_b l_r7 t_right">
+                <div class="right" ng-if="returnInfo.refund_type==1&&returnInfo.status==2&&returnInfo.refund_sn==''"><button class="l_r6 grey f_size radius border" ng-click="wirteExpree(returnInfo.rid)">填写单号</button></div>
+                <div class="right" ng-if="returnInfo.status!=2"><a href="tel:400-6353-360"><button class="l_r6 grey f_size radius border m_right" >联系客服</button></a></div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+    <div ng-show='load.busy' class="down_updata">加载中...</div>
+</div>
+<!--<div class="waa m_top4"> -->
+<!--<div class="w_all w_b">-->
+	<!--<div class="l_r7">-->
+	<!--<div class="w_67 left">-->
+        <!--<img class="l_r5" src="images/jin_03.jpg" width="26">衣衣布舍成衣批发店-->
+    <!--</div>-->
+    <!--<div class="right w_33 t_right">-->
+    	<!--<span class="cheng">退款成功</span>-->
+    <!--</div>-->
+    <!--<div class="clear"></div>-->
+    <!--</div>-->
+<!--</div>-->
+<!--<div class="t_bottom">-->
+<!--<div class="w_b l_r7">-->
+	<!--<div class="left w_25">-->
+        <!--<img src="images/jin_11.jpg" width="80">-->
+    <!--</div>-->
+    <!--<div class="right w_75">-->
+    	<!--<h1 class="f_size">欧洲站2014早秋新款气质女装雨伞刺绣蕾丝拼接太空棉蓬蓬连衣裙潮</h1>-->
+        <!--<p class="m_top4 f_size"><span class="b_huang l_r6 radius2">混批订单</span></p>-->
+    <!--</div>-->
+    <!--<div class="clear"></div>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="t_bottom">-->
+<!--<div class="w_b l_r7">-->
+	<!--<div class="left w_25">-->
+        <!--<img src="images/jin_11.jpg" width="80">-->
+    <!--</div>-->
+    <!--<div class="right w_75">-->
+    	<!--<h1 class="f_size">欧洲站2014早秋新款气质女装雨伞刺绣蕾丝拼接太空棉蓬蓬连衣裙潮</h1>-->
+        <!--<p class="m_top4 c_grey f_size">颜色：蓝色<span class="p_l">尺码：L</span></p>-->
+    <!--</div>-->
+    <!--<div class="clear"></div>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="t_bottom">-->
+	<!--<div class="w_b l_r7">-->
+    	<!--<p><span class="right">退款金额:￥399.00</span>交易金额:￥399.00</p>-->
+    <!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<div class="qi relative" ng-show="showbox.expressNum">
+    <div class="l_r3">
+        <h1 class="wei f_size1 t_center b_cc p_b3">退换货信息</h1>
+        <div class="m_top1 m_b1 t_center"><span class="border radius grey l_r7 t_center"><input type="text" class="b_none f_size l_r7" placeholder="快递单号" ng-model="msgNum"></span></div>
+    </div>
+    <div class="t_bottom title t_center m_top2">
+        <button class="f_size1 cheng w_05 b_r left title" ng-click="showbox.expressNum=false">取消</button>
+        <button class="f_size1 cheng w_05 left w_b title" ng-click="wirteExpressNum(msgNum)">确认</button>
+    </div>
+</div>
+<div class="box block1" ng-show="showbox.expressNum" ng-click="showbox.expressNum=false"></div>

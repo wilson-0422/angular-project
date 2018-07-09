@@ -1,0 +1,119 @@
+<div ui-view=""></div>
+<div class="bottom">
+   <ul class="t_center l_title f_size1 jia_bottom" ng-if="type==''">
+      <li class="left w_05 cheng w_b" ng-click="spanSplitOrder()" ng-if="DetailsList.is_group==1||DetailsList.is_group==0">发起拼单</li>
+      <li class="left w_05 cheng w_b" ui-sref="CommodityDetails.details_one({pid:DetailsList.group_id,type:2})" ng-if="DetailsList.is_group==2">参与拼单</li>
+      <li class="left w_05 b_huang" ng-click="enterShopCar()">加入进货单</li>
+   </ul>
+    <ul class="t_center l_title f_size1 jia_bottom" ng-if="type==5">
+        <li class="left w_all b_huang" ng-click="enterShopCar()" ng-if="DetailsList.activity_end_time*1000>nowTime&&DetailsList.activity_start_time*1000<nowTime">马上抢购</li>
+        <li class="left w_all b_huang" ng-if="DetailsList.activity_end_time*1000<nowTime">抢购已结束</li>
+        <li class="left w_all b_huang" ng-if="DetailsList.activity_start_time*1000>nowTime">抢购未开始</li>
+    </ul>
+    <ul class="t_center l_title f_size1 jia_bottom" ng-if="type==8">
+        <li class="left w_all b_huang" ng-click="enterShopCar()" ng-if="DetailsList.live_end_time*1000>nowTime&&DetailsList.live_time*1000<nowTime">马上购买</li>
+        <li class="left w_all b_huang" ng-if="DetailsList.live_end_time*1000<nowTime">直播已结束</li>
+        <li class="left w_all b_huang" ng-if="DetailsList.live_time*1000>nowTime">直播未开始</li>
+    </ul>
+    <ul class="t_center l_title f_size1 jia_bottom" ng-if="type==1">
+        <li class="left w_all b_huang" ng-click="enterShopCar()" ng-if="DetailsList.end_time*1000>nowTime">开始团购</li>
+        <li class="left w_all b_huang" ng-if="DetailsList.end_time*1000<nowTime">已结束</li>
+    </ul>
+    <ul class="t_center l_title f_size1 jia_bottom" ng-if="type==2">
+        <li class="left w_all b_huang" ng-click="enterShopCar()" ng-if="DetailsList.end_time*1000>nowTime&&DetailsList.group.state==0">参与拼单</li>
+        <li class="left w_all b_huang" ng-if="DetailsList.end_time*1000<nowTime||DetailsList.group.state!=0">已结束</li>
+    </ul>
+</div>
+<div class="box box2" style="opacity: 1;" ng-show="joinShopList.split"  ng-click="joinShopList.split=false"></div>
+<div class="box box2" style="opacity: 1;" ng-show="joinShopList.order" ng-click="joinShopList.order=false"></div>
+  <div class="bottom w_b jia_content" ng-show="joinShopList.split"  style="background-color: #fff;">
+    <div class="l_r7 b_bottom">
+    <div class="left w_32">
+        <img onerror="this.src='images/yipi_goods.png'" ng-src="{{thumb180Url+DetailsList.path1}}" width="104">
+    </div>
+    <div class="right w_63">
+        <div class="t_right"><img class="close_content" src="images/raw.jpg" width="24" ng-click="joinShopList.split=false"></div>
+        <div class="w_90">
+        <h1 class="f_size p_b">{{DetailsList.product_name}}</h1>
+        <p class="cheng f_size">￥{{DetailsList.sold_price1}} <span ng-bind="'~ ￥'+DetailsList.sold_price2" ng-if="DetailsList.sold_price2"></span>
+            <span ng-bind="'~ ￥'+DetailsList.sold_price3" ng-if="DetailsList.sold_price3"></span>
+            <span ng-bind="'~ ￥'+DetailsList.sold_price4" ng-if="DetailsList.sold_price4"></span>
+        </p>
+        </div>
+    </div>
+    <div class="clear"></div>
+    </div>
+   <div class="l_r w_b pingdan">
+    <ul>
+        <li class="left border l_r7 radius" ng-click="changeSplit($index,numPrice.num,numPrice.str)" ng-repeat="numPrice in DetailsList.ranges" ng-class="{'h_huang':DetailsList.is_splitOrder==$index,'c_grey2':numPrice.num==1}">
+            <div class="left w_67">
+                <p ng-bind="numPrice.str">1件起批</p>
+                <p class="f_size1 cheng" ng-bind="'￥'+numPrice.price"></p>
+            </div>
+            <div class="w_33 left p_top" ng-if="numPrice.num==1">不可用</div>
+        </li>
+       <div class="clear"></div>
+    </ul>
+  </div>
+  <button class="f_size1 l_title b_huang w_all m_top4 xia"  ng-click="upLoadSplit()">确定</button>
+ </div>
+ <div class="bottom w_b jia_content" ng-show="joinShopList.order">
+ 	<div class="l_r7 b_bottom">
+        <div class="left w_32">
+            <img onerror="this.src='images/yipi_goods.png'" ng-src="{{thumb180Url+DetailsList.path1}}" width="104">
+        </div>
+        <div class="right w_63" ng-if="type==''">
+            <div class="t_right" ng-click="joinShopList.order=false"><img class="close_content" src="images/raw.jpg" width="24"></div>
+            <div class="w_90">
+                <h1 class="f_size p_b">{{DetailsList.product_name}}</h1>
+                <p class="cheng f_size">￥{{DetailsList.ranges_str}}
+                </p>
+            </div>
+            <div class="w_90" ng-if="type==5">
+                <h1 class="f_size p_b">{{DetailsList.product_name}}</h1>
+                <p class="cheng f_size">￥{{DetailsList.grap.activity_price}}</p><p class="cheng f_size">数量：{{DetailsList.grap.activity_price}}</p>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="l_r5 wrap color b_bottom">
+
+        <!--<ks-swiper-container pagination-is-active="false" initial-slide="0" loop="false" slides-per-view="6" space-between="5" pagination-clickable="true">-->
+            <!--<ks-swiper-slide ng-repeat="color in colorClass">-->
+                <!--<span ng-class="{'hover':priceList==$index}" ng-bind="color.name" ng-click="changeColor($index)"></span>-->
+            <!--</ks-swiper-slide>-->
+        <!--</ks-swiper-container>-->
+        <div class="w_all color" style="overflow: scroll;">
+            <ul class="c_c" ng-style="widthColor">
+                <li class="left" style="margin-right: 20px;" ng-repeat="color in DetailsList.attribute" ng-click="changeColor($index)">
+                    <span ng-class="{'hover':priceList==$index}" ng-bind="color.name"></span>
+                </li>
+            </ul>
+        </div>
+        <div class="ma" ng-repeat="color in DetailsList.attribute" ng-if="priceList==$index">
+            <dl class="b_bottom" ng-repeat="sizesInfo in color.size">
+                <dt class="left w_32 f_size" ng-bind="sizesInfo.name+'码'">M码</dt>
+                <dd class="right w_54">
+                    <p class="left c_grey w_40 t_center" ng-bind="sizesInfo.stock">库存 {{sizesInfo.stock}}</p>
+                    <p class="left w_60 shuma">
+                        <span class="min bod cheng" style="padding:0;display:block" ng-click="changeOne(sizesInfo,-1)">-</span>
+                        <input class="bodt"  disabled="disabled" type="text" placeholder="0" ng-model="sizesInfo.num" ng-blur="changeInput(sizesInfo)"/>
+                        <span class="add bod cheng" style="padding:0;display:block" ng-click="changeOne(sizesInfo,1)">+</span>
+                    </p>
+                </dd>
+                <div class="clear"></div>
+            </dl>
+            <div class="l_r">
+                <div class="left jia_button">
+                    <button class="f_size w_f b_cheng" ng-click="addNumAll()">加一手</button>
+                    <button class="cheng f_size bb_cheng w_b" ng-click="reduceNumAll()">减一手</button>
+                </div>
+                <div class="right title">
+                    <span class="p_r1">共<em class="cheng" ng-bind="totleNum">2</em>件</span><span class="f_size cheng">￥{{totlePrice}}</span>
+                </div>
+            </div>
+            <button class="f_size1 l_title b_huang w_all m_top4" ng-click="enterOrderList()" ng-if="type==''">确定</button>
+            <button class="f_size1 l_title b_huang w_all m_top4" ng-click="activityOrder()" ng-if="type!=''">确定</button>
+        </div>
+    </div>
+ </div>
